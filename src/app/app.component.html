@@ -1,5 +1,12 @@
-<div class="container">
-  <h1 class="text-primary">vosaivnioavo</h1>
-  <fa-icon [icon]="faCoffee" class="text-danger"></fa-icon>
+<div class="app w-100 d-flex flex-wrap flex-column justify-content-between">
+  <app-header></app-header>
+  <main class="app-main">
+    <!--  <div class="wrapper">
+      <div class="page">
+        <div class="page-inner"> -->
+    <router-outlet></router-outlet>
+    <!--  </div>
+      </div>
+    </div> -->
+  </main>
 </div>
-<router-outlet></router-outlet>
