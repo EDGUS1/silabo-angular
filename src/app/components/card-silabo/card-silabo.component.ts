@@ -13,7 +13,9 @@ export class CardSilaboComponent implements OnInit {
   faPen = faPen;
   constructor() {}
 
-  ngOnInit(): void {
-    console.log(this.silabo);
+  ngOnInit(): void {}
+
+  deleteSilabo() {
+    alert('delete');
   }
 }
