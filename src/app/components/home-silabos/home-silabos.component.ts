@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faList, faTh } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home-silabos',
@@ -40,6 +41,8 @@ export class HomeSilabosComponent implements OnInit {
       fecha: new Date(),
     },
   ];
+  faList = faList;
+  faGrid = faTh;
 
   constructor() {}
 
