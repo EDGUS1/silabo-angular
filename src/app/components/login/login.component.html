@@ -1,5 +1,5 @@
 <div class="card form-signin text-center mt-5">
-  <form (submit)="cambiarVista($event)">
+  <form [formGroup]="form" (submit)="cambiarVista($event)">
     <img
       class="my-4"
       src="https://upload.wikimedia.org/wikipedia/commons/9/99/Sample_User_Icon.png"
@@ -15,6 +15,7 @@
         class="form-control"
         id="floatingInput"
         placeholder="name@example.com"
+        formControlName="email"
       />
       <label for="floatingInput">Correo institucional</label>
     </div>
@@ -24,6 +25,7 @@
         class="form-control"
         id="floatingPassword"
         placeholder="Password"
+        formControlName="password"
       />
       <label for="floatingPassword">Contraseña</label>
     </div>
