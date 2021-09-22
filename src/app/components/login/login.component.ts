@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
-import { HeaderComponent } from '../header/header.component';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +10,11 @@ import { HeaderComponent } from '../header/header.component';
 })
 export class LoginComponent implements OnInit {
   form: FormGroup = new FormGroup({});
-  constructor(private router: Router, private fb: FormBuilder) {}
+  constructor(
+    private router: Router,
+    private fb: FormBuilder,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -35,8 +38,8 @@ export class LoginComponent implements OnInit {
         password: this.form.get('password').value,
       });
       sessionStorage.setItem('email', this.form.get('email').value);
-      let auth = new AuthService();
 
+      this.authService.toggle();
       this.router.navigate(['silabo']);
     } else {
       alert('invalid');

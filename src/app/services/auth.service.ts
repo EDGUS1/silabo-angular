@@ -1,10 +1,13 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   private isAuthenticated = false;
+
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
+
   constructor() {}
 
   logout() {
@@ -18,5 +21,10 @@ export class AuthService {
       this.isAuthenticated = true;
     }
     return this.isAuthenticated;
+  }
+
+  toggle() {
+    this.isAuthenticated = this.getIsAuthenticated();
+    this.change.emit(this.isAuthenticated);
   }
 }
