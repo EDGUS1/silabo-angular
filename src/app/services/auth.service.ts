@@ -4,18 +4,16 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthService {
-  isAuthenticated = false;
+  private isAuthenticated = false;
   constructor() {}
 
   logout() {
     this.isAuthenticated = false;
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('authData');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('email');
   }
 
   getIsAuthenticated(): boolean {
-    const user = sessionStorage.getItem('username');
+    const user = sessionStorage.getItem('email');
     if (user != null) {
       this.isAuthenticated = true;
     }

@@ -1,4 +1,4 @@
-<div class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="navbar navbar-expand-md navbar-light bg-light">
   <div class="container">
     <a href="#" class="navbar-brand">Logo</a>
     <button
@@ -18,7 +18,10 @@
           <a class="nav-link" href="#">Silabos</a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-success" routerLink="/">Login</a>
+          <a class="btn btn-success" routerLink="/" *ngIf="!login"> Login </a>
+          <button class="btn btn-danger" *ngIf="login" (click)="logout()">
+            Logout
+          </button>
         </li>
       </ul>
     </div>
