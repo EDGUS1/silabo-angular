@@ -10,8 +10,7 @@ import { HomeSilabosComponent } from './components/home-silabos/home-silabos.com
 import { CardSilaboComponent } from './components/card-silabo/card-silabo.component';
 import { SilaboComponent } from './components/silabo/silabo.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HomeSilabosGridComponent } from './components/home-silabos-grid/home-silabos-grid.component';
-import { HomeSilabosListComponent } from './components/home-silabos-list/home-silabos-list.component';
+import { CardSilabosListComponent } from './components/card-silabos-list/card-silabos-list.component';
 
 @NgModule({
   declarations: [
@@ -21,8 +20,7 @@ import { HomeSilabosListComponent } from './components/home-silabos-list/home-si
     HomeSilabosComponent,
     CardSilaboComponent,
     SilaboComponent,
-    HomeSilabosGridComponent,
-    HomeSilabosListComponent,
+    CardSilabosListComponent,
   ],
   imports: [
     BrowserModule,

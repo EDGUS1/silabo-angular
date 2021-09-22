@@ -34,24 +34,47 @@
             role="group"
             aria-label="Basic example"
           >
-            <button type="button" class="btn btn-outline-secondary">
+            <button
+              type="button"
+              class="btn"
+              [ngClass]="{
+                'btn-outline-secondary': viewSilabosGrid,
+                'btn-secondary': !viewSilabosGrid
+              }"
+              (click)="activeListView()"
+            >
               <fa-icon [icon]="faList"></fa-icon>
             </button>
-            <button type="button" class="btn btn-secondary">
+            <button
+              type="button"
+              class="btn"
+              [ngClass]="{
+                'btn-outline-secondary': !viewSilabosGrid,
+                'btn-secondary': viewSilabosGrid
+              }"
+              (click)="activeGridView()"
+            >
               <fa-icon [icon]="faGrid"></fa-icon>
             </button>
           </div>
         </div>
         <div class="col-4">
-          <button type="button" class="btn btn-success" btn-block>Crear</button>
+          <button type="button" class="btn btn-success">Crear</button>
         </div>
       </div>
     </div>
   </div>
   <div class="row my-3" *ngIf="silabos?.length > 0; else nosilabos">
-    <div class="col-12 col-md-6 col-lg-4" *ngFor="let silabo of silabos">
-      <app-card-silabo [silabo]="silabo"></app-card-silabo>
-    </div>
+    <ng-container *ngIf="viewSilabosGrid; else silaboslist">
+      <div class="col-12 col-md-6 col-lg-4" *ngFor="let silabo of silabos">
+        <app-card-silabo [silabo]="silabo"></app-card-silabo>
+      </div>
+    </ng-container>
+    <ng-template #silaboslist>
+      <div class="col-12" *ngFor="let silabo of silabos">
+        <app-card-silabos-list [silabo]="silabo"></app-card-silabos-list>
+      </div>
+    </ng-template>
   </div>
   <ng-template #nosilabos>
     <div class="row my-5">

@@ -43,8 +43,19 @@ export class HomeSilabosComponent implements OnInit {
   ];
   faList = faList;
   faGrid = faTh;
+  viewSilabosGrid: boolean;
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.viewSilabosGrid = true;
+  }
+
+  activeListView() {
+    this.viewSilabosGrid = false;
+  }
+
+  activeGridView() {
+    this.viewSilabosGrid = true;
+  }
 }
