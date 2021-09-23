@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable, Output } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -8,8 +8,11 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class AuthService {
+  @Output() change: EventEmitter<boolean> = new EventEmitter();
+
   isAuthenticated = false;
   urlApi: string = `${environment.api.baseUrl}`;
+
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
@@ -18,19 +21,22 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  logout() {
+  logout(): void {
     this.isAuthenticated = false;
-    sessionStorage.removeItem('username');
-    sessionStorage.removeItem('authData');
-    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('email');
   }
 
   getIsAuthenticated(): boolean {
-    const user = sessionStorage.getItem('username');
+    const user = sessionStorage.getItem('email');
     if (user != null) {
       this.isAuthenticated = true;
     }
     return this.isAuthenticated;
+  }
+
+  toggle(): void {
+    this.isAuthenticated = this.getIsAuthenticated();
+    this.change.emit(this.isAuthenticated);
   }
 
   private handleError(error: HttpErrorResponse) {
