@@ -9,7 +9,7 @@ import { faList, faTh } from '@fortawesome/free-solid-svg-icons';
 export class HomeSilabosComponent implements OnInit {
   silabos = [
     {
-      nombre_curso: 'Nombre del curso',
+      nombre_curso: 'Nombre del curso 1',
       ciclo: 7,
       peridio: 2021,
       descripcion:
@@ -17,7 +17,7 @@ export class HomeSilabosComponent implements OnInit {
       fecha: new Date(),
     },
     {
-      nombre_curso: 'Nombre del curso',
+      nombre_curso: 'Nombre del curso 2',
       ciclo: 7,
       peridio: 2021,
       descripcion:
@@ -25,7 +25,7 @@ export class HomeSilabosComponent implements OnInit {
       fecha: new Date(),
     },
     {
-      nombre_curso: 'Nombre del curso',
+      nombre_curso: 'Nombre del curso 3',
       ciclo: 7,
       peridio: 2021,
       descripcion:
@@ -33,7 +33,7 @@ export class HomeSilabosComponent implements OnInit {
       fecha: new Date(),
     },
     {
-      nombre_curso: 'Nombre del curso',
+      nombre_curso: 'Nombre del curso 4',
       ciclo: 7,
       peridio: 2021,
       descripcion:

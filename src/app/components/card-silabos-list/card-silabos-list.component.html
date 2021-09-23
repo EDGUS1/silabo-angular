@@ -9,7 +9,9 @@
     align-items-center
   "
 >
-  <ng-container><span class="h5">Nombre del curso</span></ng-container>
+  <ng-container>
+    <span class="h5">{{ silabo?.nombre_curso }}</span>
+  </ng-container>
   <span>
     <button class="btn btn-outline-danger mx-2">
       <fa-icon [icon]="faHeart"></fa-icon>
