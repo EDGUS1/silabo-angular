@@ -11,6 +11,7 @@ import { CardSilaboComponent } from './components/card-silabo/card-silabo.compon
 import { SilaboComponent } from './components/silabo/silabo.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CardSilabosListComponent } from './components/card-silabos-list/card-silabos-list.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CardSilabosListComponent } from './components/card-silabos-list/card-si
     AppRoutingModule,
     FontAwesomeModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
