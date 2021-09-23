@@ -12,6 +12,7 @@ export class AuthService {
 
   isAuthenticated = false;
   urlApi: string = `${environment.api.baseUrl}`;
+
   constructor(private http: HttpClient) {}
 
   login(email: string, password: string): Observable<any> {
@@ -20,7 +21,7 @@ export class AuthService {
       .pipe(catchError(this.handleError));
   }
 
-  logout() {
+  logout(): void {
     this.isAuthenticated = false;
     sessionStorage.removeItem('email');
   }
@@ -33,10 +34,11 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
-  toggle() {
+  toggle(): void {
     this.isAuthenticated = this.getIsAuthenticated();
     this.change.emit(this.isAuthenticated);
   }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
