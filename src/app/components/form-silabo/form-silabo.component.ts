@@ -1,21 +1,33 @@
 import { Component, OnInit } from '@angular/core';
-import {
-  faTrashAlt,
-  faHeart,
-  faPen,
-  faFileDownload,
-} from '@fortawesome/free-solid-svg-icons';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-form-silabo',
   templateUrl: './form-silabo.component.html',
   styleUrls: ['./form-silabo.component.css'],
 })
 export class FormSilaboComponent implements OnInit {
-  faHeart = faHeart;
+  silaboForm: FormGroup = new FormGroup({});
   faTrashAlt = faTrashAlt;
-  faPen = faPen;
-  faFileDownload = faFileDownload;
-  constructor() {}
+  constructor(private fb: FormBuilder) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.initForm();
+  }
+  initForm() {
+    this.silaboForm = this.fb.group({
+      codigo: ['', [Validators.required]],
+      nombre: ['', [Validators.required]],
+      tipo: ['', [Validators.required]],
+      horas: ['', [Validators.required]],
+      semestre: ['', [Validators.required]],
+      ciclo: ['', [Validators.required]],
+      creditos: ['', [Validators.required]],
+      modalidad: ['', [Validators.required]],
+      sumilla: ['', [Validators.required]],
+    });
+  }
+  saveSilabo() {
+    console.log(this.silaboForm.value);
+  }
 }
