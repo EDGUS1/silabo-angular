@@ -15,7 +15,16 @@ export class SilaboComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   faPen = faPen;
   faFileDownload = faFileDownload;
+  isSelected: boolean;
+  isEdit: boolean;
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isSelected = false;
+    this.isEdit = false;
+  }
+
+  selectSilabo() {
+    this.isSelected = true;
+  }
 }
