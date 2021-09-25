@@ -28,6 +28,6 @@ export class FormSilaboComponent implements OnInit {
     });
   }
   saveSilabo() {
-    console.log(this.silaboForm.value);
+    console.log(this.silaboForm.valid, this.silaboForm.value);
   }
 }
