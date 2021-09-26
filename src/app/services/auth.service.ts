@@ -17,7 +17,7 @@ export class AuthService {
 
   login(email: string, password: string): Observable<any> {
     return this.http
-      .post(`${this.urlApi}login`, { email, password })
+      .post(`${this.urlApi}/auth/login`, { email, password })
       .pipe(catchError(this.handleError));
   }
 
