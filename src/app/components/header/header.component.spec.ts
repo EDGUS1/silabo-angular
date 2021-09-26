@@ -1,4 +1,7 @@
+import { HttpClientModule } from '@angular/common/http';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { HeaderComponent } from './header.component';
 
@@ -8,9 +11,17 @@ describe('HeaderComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeaderComponent ]
-    })
-    .compileComponents();
+      declarations: [HeaderComponent],
+      imports: [HttpClientModule],
+      providers: [
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
