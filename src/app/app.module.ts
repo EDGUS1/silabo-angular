@@ -9,7 +9,7 @@ import { LoginComponent } from './components/login/login.component';
 import { HomeSilabosComponent } from './components/home-silabos/home-silabos.component';
 import { CardSilaboComponent } from './components/card-silabo/card-silabo.component';
 import { SilaboComponent } from './components/silabo/silabo.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CardSilabosListComponent } from './components/card-silabos-list/card-silabos-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormSilaboComponent } from './components/form-silabo/form-silabo.component';
@@ -35,6 +35,7 @@ import { NewCourseComponent } from './components/new-course/new-course.component
     FontAwesomeModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
