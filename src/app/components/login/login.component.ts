@@ -47,7 +47,7 @@ export class LoginComponent implements OnInit {
           alertify.set('notifier', 'position', 'top-right');
           alertify.success('Success message');
 
-          this.router.navigate(['silabo']);
+          this.router.navigate(['silabos']);
         }
       },
       (err) => console.log(err)
