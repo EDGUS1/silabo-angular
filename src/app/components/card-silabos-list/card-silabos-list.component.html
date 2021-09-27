@@ -10,13 +10,13 @@
   "
 >
   <ng-container>
-    <span class="h5">{{ silabo?.nombre_curso }}</span>
+    <span class="h5">{{ silabo?.asig_nombre }}</span>
   </ng-container>
   <span>
     <button class="btn btn-outline-danger mx-2">
       <fa-icon [icon]="faHeart"></fa-icon>
     </button>
-    <a class="btn btn-info mx-2" routerLink="/silabo/1">
+    <a class="btn btn-info mx-2" routerLink="/silabo/{{ silabo?.asig_id }}">
       <fa-icon [icon]="faPen"></fa-icon>
     </a>
     <button class="btn btn-warning mx-2">
