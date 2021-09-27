@@ -16,7 +16,7 @@
     <button class="btn btn-outline-danger mx-2">
       <fa-icon [icon]="faHeart"></fa-icon>
     </button>
-    <a class="btn btn-info mx-2" routerLink="/silabo/{{ silabo?.asig_id }}">
+    <a class="btn btn-info mx-2" (click)="editSilabo()">
       <fa-icon [icon]="faPen"></fa-icon>
     </a>
     <button class="btn btn-warning mx-2">
