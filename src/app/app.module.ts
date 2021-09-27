@@ -14,6 +14,7 @@ import { CardSilabosListComponent } from './components/card-silabos-list/card-si
 import { HttpClientModule } from '@angular/common/http';
 import { FormSilaboComponent } from './components/form-silabo/form-silabo.component';
 import { HeaderSilaboComponent } from './components/header-silabo/header-silabo.component';
+import { NewCourseComponent } from './components/new-course/new-course.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { HeaderSilaboComponent } from './components/header-silabo/header-silabo.
     CardSilabosListComponent,
     FormSilaboComponent,
     HeaderSilaboComponent,
+    NewCourseComponent,
   ],
   imports: [
     BrowserModule,

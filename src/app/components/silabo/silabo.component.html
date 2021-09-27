@@ -1,6 +1,9 @@
 <div class="container mt-4">
   <app-header-silabo *ngIf="isEdit"></app-header-silabo>
-  <div class="row align-items-center" *ngIf="!isSelected">
+  <div class="row align-items-center" *ngIf="!isSelected && !isNewCourse">
+    <div class="col-12 mb-4">
+      <span class="h3">Seleccione un curso o cree uno nuevo</span>
+    </div>
     <div class="col-sm-6">
       <select name="" id="" class="form-select" (change)="selectSilabo()">
         <option value="" hidden>Seleccione un curso</option>
@@ -8,10 +11,13 @@
         <option value="">Base de datos I - Plan 2015</option>
       </select>
     </div>
-    <div class="col-sm-1 my-3 my-sm-0 text-center">OR</div>
+    <div class="col-sm-1 my-3 my-sm-0 text-center">O</div>
     <div class="col-sm-5 text-center text-sm-start">
-      <button class="btn btn-success">Crear nuevo silabo</button>
+      <button class="btn btn-success" (click)="createCourse()">
+        Crear nuevo curso
+      </button>
     </div>
   </div>
   <app-form-silabo *ngIf="isSelected"></app-form-silabo>
+  <app-new-course *ngIf="isNewCourse"></app-new-course>
 </div>
