@@ -66,6 +66,9 @@ export class LoginComponent implements OnInit {
         this.loginform.get('password').value
       );
     } else {
+      Object.values(this.loginform.controls).forEach((control) => {
+        control.markAsTouched();
+      });
       alertify.set('notifier', 'position', 'top-right');
       alertify.warning('Ingrese el email y contraseña');
     }

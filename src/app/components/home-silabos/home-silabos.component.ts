@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { faList, faTh } from '@fortawesome/free-solid-svg-icons';
 import { Silabo } from 'src/app/models/silabo';
-import { CursoService } from 'src/app/services/curso.service';
 import { SilaboService } from 'src/app/services/silabo.service';
 
 @Component({
@@ -25,11 +24,7 @@ export class HomeSilabosComponent implements OnInit {
     },
   };
 
-  constructor(
-    private cursoService: CursoService,
-    private router: Router,
-    private silaboService: SilaboService
-  ) {}
+  constructor(private router: Router, private silaboService: SilaboService) {}
 
   ngOnInit(): void {
     this.viewSilabosGrid = true;
@@ -45,12 +40,11 @@ export class HomeSilabosComponent implements OnInit {
   }
 
   listSilabos(id: number): void {
-    /* this.cursoService.listCourses().subscribe((response: Silabo[]) => {
-      console.log(response);
-      this.silabos = response;
-    }); */
     this.silaboService.listById(id).subscribe(
-      (response) => console.log(response),
+      (response: Silabo[]) => {
+        this.silabos = response;
+        console.log(response);
+      },
       (err) => console.log(err)
     );
   }

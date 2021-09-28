@@ -25,6 +25,14 @@ export class SilaboService {
       .pipe(catchError(this.handleError));
   }
 
+  downloadSilabo(id: number) {
+    return this.http.post(
+      `${this.urlApi}/silabo/pdf`,
+      { silabo_id: id },
+      { responseType: 'blob' }
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);

@@ -9,7 +9,7 @@
     <hr />
     <p>
       <small>Ciclo: {{ silabo?.asig_ciclo }}</small> -
-      <small>Periodo: </small>
+      <small>Periodo: {{ silabo?.periodo_academico }}</small>
     </p>
     <p class="card-text">
       {{ silabo?.asig_sumilla }}
@@ -19,11 +19,17 @@
         <a class="btn btn-info" (click)="editSilabo()">
           <fa-icon [icon]="faPen"></fa-icon>
         </a>
-        <button class="btn btn-warning mx-2" (click)="deleteSilabo()">
+        <button class="btn btn-warning mx-1" (click)="deleteSilabo()">
           <fa-icon [icon]="faTrashAlt"></fa-icon>
         </button>
+        <button
+          class="btn btn-primary"
+          (click)="downloadSilabo(silabo?.asig_periodo_id)"
+        >
+          <fa-icon [icon]="faFileDownload"></fa-icon>
+        </button>
       </span>
-      <small>fecha</small>
+      <small>{{ silabo?.updated_at | date: "short" }}</small>
     </div>
   </div>
 </div>

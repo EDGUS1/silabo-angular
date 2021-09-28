@@ -1,7 +1,14 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { faHeart, faTrashAlt, faPen } from '@fortawesome/free-solid-svg-icons';
+import {
+  faHeart,
+  faTrashAlt,
+  faPen,
+  faFileDownload,
+} from '@fortawesome/free-solid-svg-icons';
 import { Silabo } from 'src/app/models/silabo';
+import { SilaboService } from 'src/app/services/silabo.service';
+import alertify from 'alertifyjs';
 
 @Component({
   selector: 'app-card-silabo',
@@ -14,6 +21,7 @@ export class CardSilaboComponent implements OnInit {
   faHeart = faHeart;
   faTrashAlt = faTrashAlt;
   faPen = faPen;
+  faFileDownload = faFileDownload;
 
   navigationExtras: NavigationExtras = {
     state: {
@@ -22,7 +30,7 @@ export class CardSilaboComponent implements OnInit {
     },
   };
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private silaboService: SilaboService) {}
 
   ngOnInit(): void {}
 
@@ -33,5 +41,20 @@ export class CardSilaboComponent implements OnInit {
   editSilabo() {
     this.navigationExtras.state!.silabo = this.silabo;
     this.router.navigate(['/silabo'], this.navigationExtras);
+  }
+
+  downloadSilabo(id: number) {
+    alertify.set('notifier', 'position', 'top-right');
+    alertify.success('Descargando...');
+    this.silaboService.downloadSilabo(id).subscribe((result) => {
+      const url = window.URL.createObjectURL(result);
+      const a = document.createElement('a');
+      a.setAttribute('style', 'display:none;');
+      document.body.appendChild(a);
+      a.href = url;
+      a.download = 'Silabo.pdf';
+      a.click();
+      return url;
+    });
   }
 }

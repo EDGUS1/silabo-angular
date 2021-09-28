@@ -1,4 +1,4 @@
-<div class="card form-signin text-center mt-5">
+<div class="card form-signin text-center mt-4">
   <form [formGroup]="loginform" (submit)="cambiarVista($event)">
     <img class="my-4" src="assets/user.png" alt="" width="100" height="100" />
     <h1 class="h3 mb-3 fw-normal my-3">Inicio de sesión</h1>
@@ -10,8 +10,12 @@
         id="floatingInput"
         placeholder="name@example.com"
         formControlName="email"
+        [class.is-invalid]="correoNoValido"
       />
       <label for="floatingInput">Correo institucional</label>
+      <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido">
+        Ingrese un correo válido
+      </small>
     </div>
     <div class="form-floating my-3">
       <input
@@ -20,8 +24,12 @@
         id="floatingPassword"
         placeholder="Password"
         formControlName="password"
+        [class.is-invalid]="passwordNoValido"
       />
       <label for="floatingPassword">Contraseña</label>
+      <small class="text-danger mt-3 mt-lg-0" *ngIf="passwordNoValido">
+        Ingrese una contraseña válida
+      </small>
     </div>
 
     <button class="w-100 btn btn-lg btn-primary" type="submit">
