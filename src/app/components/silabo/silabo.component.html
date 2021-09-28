@@ -20,7 +20,7 @@
         [(ngModel)]="curso"
         (change)="selectSilabo()"
       >
-        <option value="" hidden>Seleccione un curso</option>
+        <option [ngValue]="initialCurso" hidden>Seleccione un curso</option>
         <!-- <option value="">Base de datos I - Plan 2018</option>
         <option value="">Base de datos I - Plan 2015</option> -->
         <option *ngFor="let c of cursos" [ngValue]="c">
