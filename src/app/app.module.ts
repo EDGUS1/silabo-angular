@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormSilaboComponent } from './components/form-silabo/form-silabo.component';
 import { HeaderSilaboComponent } from './components/header-silabo/header-silabo.component';
 import { NewCourseComponent } from './components/new-course/new-course.component';
+import { TruncatePipe } from './pipes/truncate.pipe';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { NewCourseComponent } from './components/new-course/new-course.component
     FormSilaboComponent,
     HeaderSilaboComponent,
     NewCourseComponent,
+    TruncatePipe,
   ],
   imports: [
     BrowserModule,
