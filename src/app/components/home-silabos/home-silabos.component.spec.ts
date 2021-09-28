@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 
 import { HomeSilabosComponent } from './home-silabos.component';
 
@@ -8,9 +10,17 @@ describe('HomeSilabosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HomeSilabosComponent ]
-    })
-    .compileComponents();
+      declarations: [HomeSilabosComponent],
+      imports: [HttpClientModule],
+      providers: [
+        {
+          provide: Router,
+          useClass: class {
+            navigate = jasmine.createSpy('navigate');
+          },
+        },
+      ],
+    }).compileComponents();
   });
 
   beforeEach(() => {
