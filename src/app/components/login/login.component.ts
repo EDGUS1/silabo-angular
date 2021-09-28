@@ -10,7 +10,7 @@ import alertify from 'alertifyjs';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  form: FormGroup = new FormGroup({});
+  loginform: FormGroup = new FormGroup({});
 
   constructor(
     private router: Router,
@@ -19,35 +19,39 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.form = this.fb.group({
+    this.loginform = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required]],
     });
   }
 
   get correoNoValido() {
-    return this.form.get('email').invalid && this.form.get('email').touched;
+    return (
+      this.loginform.get('email').invalid && this.loginform.get('email').touched
+    );
   }
 
   get passwordNoValido() {
     return (
-      this.form.get('password').invalid && this.form.get('password').touched
+      this.loginform.get('password').invalid &&
+      this.loginform.get('password').touched
     );
   }
 
   login(email: string, passwrod: string) {
     this.authService.login(email, passwrod).subscribe(
       (response) => {
-        console.log(response);
-
         if (response?.length > 0) {
           sessionStorage.setItem('email', response[0]['usuario_email']);
           this.authService.toggle();
 
           alertify.set('notifier', 'position', 'top-right');
-          alertify.success('Success message');
+          alertify.success('Inicio de sesión corrrecto');
 
           this.router.navigate(['silabos']);
+        } else {
+          alertify.set('notifier', 'position', 'top-right');
+          alertify.error('Credenciales incorrectas');
         }
       },
       (err) => console.log(err)
@@ -56,14 +60,14 @@ export class LoginComponent implements OnInit {
 
   cambiarVista(event) {
     event.preventDefault();
-    if (this.form.valid) {
-      console.log({
-        email: this.form.get('email').value,
-        password: this.form.get('password').value,
-      });
-      this.login(this.form.get('email').value, this.form.get('password').value);
+    if (this.loginform.valid) {
+      this.login(
+        this.loginform.get('email').value,
+        this.loginform.get('password').value
+      );
     } else {
-      alert('invalid');
+      alertify.set('notifier', 'position', 'top-right');
+      alertify.warning('Ingrese el email y contraseña');
     }
   }
 }

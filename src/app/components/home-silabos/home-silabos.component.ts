@@ -3,6 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { faList, faTh } from '@fortawesome/free-solid-svg-icons';
 import { Silabo } from 'src/app/models/silabo';
 import { CursoService } from 'src/app/services/curso.service';
+import { SilaboService } from 'src/app/services/silabo.service';
 
 @Component({
   selector: 'app-home-silabos',
@@ -24,11 +25,15 @@ export class HomeSilabosComponent implements OnInit {
     },
   };
 
-  constructor(private cursoService: CursoService, private router: Router) {}
+  constructor(
+    private cursoService: CursoService,
+    private router: Router,
+    private silaboService: SilaboService
+  ) {}
 
   ngOnInit(): void {
     this.viewSilabosGrid = true;
-    this.listarCursos();
+    this.listSilabos(1);
   }
 
   activeListView(): void {
@@ -39,11 +44,15 @@ export class HomeSilabosComponent implements OnInit {
     this.viewSilabosGrid = true;
   }
 
-  listarCursos(): void {
-    this.cursoService.listCourses().subscribe((response: Silabo[]) => {
+  listSilabos(id: number): void {
+    /* this.cursoService.listCourses().subscribe((response: Silabo[]) => {
       console.log(response);
       this.silabos = response;
-    });
+    }); */
+    this.silaboService.listById(id).subscribe(
+      (response) => console.log(response),
+      (err) => console.log(err)
+    );
   }
 
   createSilabo() {

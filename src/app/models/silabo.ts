@@ -9,4 +9,8 @@ export class Silabo {
   horas_sem_id: number;
   plan_id: number;
   tipo_asignatura_id: number;
+  periodo_academico: string;
+  asig_periodo_id: number;
+  asig_periodo_modalidad: string;
+  user_id: number;
 }

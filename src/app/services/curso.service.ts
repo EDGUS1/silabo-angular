@@ -8,12 +8,14 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root',
 })
 export class CursoService {
-  urlApi: string = `${environment.api.baseUrl}`;
+  private urlApi: string = `${environment.api.baseUrl}`;
 
   constructor(private http: HttpClient) {}
 
   listCourses() {
-    return this.http.get(`${this.urlApi}/curso`).pipe(catchError(this.handleError));
+    return this.http
+      .get(`${this.urlApi}/curso`)
+      .pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
