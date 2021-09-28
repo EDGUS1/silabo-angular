@@ -41,15 +41,12 @@ export class HomeSilabosComponent implements OnInit {
 
   listSilabos(id: number): void {
     this.silaboService.listById(id).subscribe(
-      (response: Silabo[]) => {
-        this.silabos = response;
-        console.log(response);
-      },
+      (response: Silabo[]) => (this.silabos = response),
       (err) => console.log(err)
     );
   }
 
-  createSilabo() {
+  createSilabo(): void {
     this.router.navigate(['silabo'], this.navigationExtras);
   }
 }

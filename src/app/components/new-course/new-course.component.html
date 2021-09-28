@@ -1,9 +1,14 @@
-<div class="row">
+<div class="row" [formGroup]="courseForm">
   <div class="col-sm-6 col-lg-4 my-2">
     <label for="codigo_id">Código de la asignatura</label>
-    <input type="text" id="codigo_id" class="form-control mt-2" />
+    <input
+      type="text"
+      id="codigo_id"
+      class="form-control mt-2"
+      formControlName="codigo"
+    />
   </div>
-  <!-- <div class="col-sm-6 col-lg-4 my-2">
+  <div class="col-sm-6 col-lg-4 my-2">
     <label for="nombre_id">Nombre del curso</label>
     <input
       type="text"
@@ -20,10 +25,9 @@
       class="form-select mt-2"
       formControlName="tipo"
     >
-      <option value="">Seleccione</option>
-      <option value="1">Seleccione</option>
-      <option value="2">Seleccione</option>
-      <option value="3">Seleccione</option>
+      <option value="" hidden>Seleccione</option>
+      <option value="1">Obligatorio</option>
+      <option value="2">Electivo</option>
     </select>
   </div>
   <div class="col-sm-6 col-lg-4 my-2">
@@ -34,23 +38,13 @@
       class="form-select mt-2"
       formControlName="horas"
     >
-      <option value="">Seleccione</option>
-      <option value="1">Seleccione</option>
-      <option value="2">Seleccione</option>
-      <option value="3">Seleccione</option>
+      <option value="" hidden>Seleccione</option>
+      <option value="1">3 Teoria - 2 Laboratorio</option>
+      <option value="2">4 Teoria - 2 Laboratorio</option>
     </select>
   </div>
-  <div class="col-sm-6 col-md-3 col-lg-2 my-2">
-    <label for="semestre_id">Semestre</label>
-    <input
-      type="text"
-      id="semestre_id"
-      class="form-control mt-2"
-      placeholder="2021-2"
-      formControlName="semestre"
-    />
-  </div>
-  <div class="col-sm-6 col-md-3 col-lg-2 my-2">
+
+  <div class="col-sm-6 col-lg-4 my-2">
     <label for="ciclo_id">Ciclo</label>
     <select
       name=""
@@ -59,12 +53,19 @@
       formControlName="ciclo"
     >
       <option value="" hidden>Seleccione</option>
-      <option value="1">I Ciclo</option>
-      <option value="2">II Ciclo</option>
-      <option value="3">III Ciclo</option>
+      <option value="I">I Ciclo</option>
+      <option value="II">II Ciclo</option>
+      <option value="III">III Ciclo</option>
+      <option value="IV">IV Ciclo</option>
+      <option value="V">V Ciclo</option>
+      <option value="VI">VI Ciclo</option>
+      <option value="VII">VII Ciclo</option>
+      <option value="VIII">VIII Ciclo</option>
+      <option value="IX">IX Ciclo</option>
+      <option value="X">X Ciclo</option>
     </select>
   </div>
-  <div class="col-sm-6 col-md-3 col-lg-2 my-2">
+  <div class="col-sm-6 col-lg-4 my-2">
     <label for="creditos_id">Créditos</label>
     <select
       name=""
@@ -72,10 +73,9 @@
       class="form-select mt-2"
       formControlName="creditos"
     >
-      <option value="">Seleccione</option>
-      <option value="">Seleccione</option>
-      <option value="">Seleccione</option>
-      <option value="">Seleccione</option>
+      <option value="" hidden>Seleccione</option>
+      <option value="3">3 Creditos</option>
+      <option value="4">4 Creditos</option>
     </select>
   </div>
   <div class="col-12 my-2">
@@ -87,5 +87,8 @@
       class="form-control mt-2"
       formControlName="sumilla"
     ></textarea>
-  </div> -->
+  </div>
+  <div class="col-12 my-3 d-flex flex-row-reverse">
+    <button class="btn btn-primary px-5" (click)="saveCourse()">Guardar</button>
+  </div>
 </div>
