@@ -16,6 +16,8 @@ export class HomeSilabosComponent implements OnInit {
   viewSilabosGrid: boolean;
 
   silabos: Silabo[];
+  page = 1;
+  pageSize = 2;
 
   navigationExtras: NavigationExtras = {
     state: {

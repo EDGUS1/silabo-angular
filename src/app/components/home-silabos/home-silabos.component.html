@@ -72,7 +72,12 @@
   </div>
   <div class="row my-3" *ngIf="silabos?.length > 0; else nosilabos">
     <ng-container *ngIf="viewSilabosGrid; else silaboslist">
-      <div class="col-12 col-md-6 col-lg-4" *ngFor="let silabo of silabos">
+      <div
+        class="col-12 col-md-6 col-lg-4"
+        *ngFor="
+          let silabo of silabos | slice: (page - 1) * pageSize:page * pageSize
+        "
+      >
         <app-card-silabo [silabo]="silabo"></app-card-silabo>
       </div>
     </ng-container>
@@ -81,13 +86,18 @@
         <app-card-silabos-list [silabo]="silabo"></app-card-silabos-list>
       </div>
     </ng-template>
+    <ngb-pagination
+      [(page)]="page"
+      [pageSize]="pageSize"
+      [collectionSize]="silabos.length"
+    ></ngb-pagination>
   </div>
   <ng-template #nosilabos>
     <div class="row my-5">
       <span class="h2">No tiene silabos creados</span>
     </div>
   </ng-template>
-  <div class="d-flex justify-content-center mb-5">
+  <!-- <div class="d-flex justify-content-center mb-5">
     <ul class="pagination">
       <li class="page-item disabled">
         <a class="page-link" href="#">&laquo;</a>
@@ -111,5 +121,5 @@
         <a class="page-link" href="#">&raquo;</a>
       </li>
     </ul>
-  </div>
+  </div> -->
 </div>
