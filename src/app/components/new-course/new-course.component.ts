@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import alertify from 'alertifyjs';
+import { CourseService } from 'src/app/services/course.service';
 
 @Component({
   selector: 'app-new-course',
@@ -11,7 +12,11 @@ import alertify from 'alertifyjs';
 export class NewCourseComponent implements OnInit {
   courseForm: FormGroup = new FormGroup({});
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    private courseService: CourseService
+  ) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -26,15 +31,26 @@ export class NewCourseComponent implements OnInit {
       ciclo: ['', [Validators.required]],
       creditos: ['', [Validators.required]],
       sumilla: ['', [Validators.required]],
+      estrategia: ['', [Validators.required]],
+      plan: ['', [Validators.required]],
     });
   }
 
   saveCourse() {
+    console.log(this.courseForm.value);
     if (this.courseForm.valid) {
       console.log(this.courseForm.value);
-      alertify.set('notifier', 'position', 'top-right');
-      alertify.success('Curso guardado');
-      this.router.navigate(['silabos']);
+      this.courseService.saveCourse(this.courseForm).subscribe((response) => {
+        console.log(response);
+        if (response) {
+          alertify.set('notifier', 'position', 'top-right');
+          alertify.success('Curso guardado');
+          this.router.navigate(['silabos']);
+        } else {
+          alertify.set('notifier', 'position', 'top-right');
+          alertify.error('No se pudo guardar');
+        }
+      });
     }
   }
 }

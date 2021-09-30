@@ -6,6 +6,7 @@
       id="codigo_id"
       class="form-control mt-2"
       formControlName="codigo"
+      autocomplete="off"
     />
   </div>
   <div class="col-sm-6 col-lg-4 my-2">
@@ -15,6 +16,7 @@
       id="nombre_id"
       class="form-control mt-2"
       formControlName="nombre"
+      autocomplete="off"
     />
   </div>
   <div class="col-sm-6 col-lg-4 my-2">
@@ -65,7 +67,7 @@
       <option value="X">X Ciclo</option>
     </select>
   </div>
-  <div class="col-sm-6 col-lg-4 my-2">
+  <div class="col-sm-6 col-md-3 col-lg-2 my-2">
     <label for="creditos_id">Créditos</label>
     <select
       name=""
@@ -74,8 +76,21 @@
       formControlName="creditos"
     >
       <option value="" hidden>Seleccione</option>
-      <option value="3">3 Creditos</option>
-      <option value="4">4 Creditos</option>
+      <option value="3">3 Créditos</option>
+      <option value="4">4 Créditos</option>
+    </select>
+  </div>
+  <div class="col-sm-6 col-md-3 col-lg-2 my-2">
+    <label for="plan_id">Plan</label>
+    <select
+      name=""
+      id="plan_id"
+      class="form-select mt-2"
+      formControlName="plan"
+    >
+      <option value="" hidden>Seleccione</option>
+      <option value="1">2015</option>
+      <option value="2">2018</option>
     </select>
   </div>
   <div class="col-12 my-2">
@@ -86,6 +101,16 @@
       rows="4"
       class="form-control mt-2"
       formControlName="sumilla"
+    ></textarea>
+  </div>
+  <div class="col-12 my-2">
+    <label for="estrategia_id">Estrategia didáctica</label>
+    <textarea
+      name=""
+      id="estrategia_id"
+      rows="4"
+      class="form-control mt-2"
+      formControlName="estrategia"
     ></textarea>
   </div>
   <div class="col-12 my-3 d-flex flex-row-reverse">

@@ -7,7 +7,7 @@ import { environment } from 'src/environments/environment';
 @Injectable({
   providedIn: 'root',
 })
-export class CursoService {
+export class CourseService {
   private urlApi: string = `${environment.api.baseUrl}`;
 
   constructor(private http: HttpClient) {}
@@ -15,6 +15,12 @@ export class CursoService {
   listCourses() {
     return this.http
       .get(`${this.urlApi}/curso`)
+      .pipe(catchError(this.handleError));
+  }
+
+  saveCourse(course) {
+    return this.http
+      .post(`${this.urlApi}/curso`, course)
       .pipe(catchError(this.handleError));
   }
 
