@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { Curso } from 'src/app/models/curso';
 import { Silabo } from 'src/app/models/silabo';
-import { CursoService } from 'src/app/services/curso.service';
+import { CourseService } from 'src/app/services/course.service';
 @Component({
   selector: 'app-silabo',
   templateUrl: './silabo.component.html',
@@ -29,7 +29,7 @@ export class SilaboComponent implements OnInit {
   cursos: Curso[];
   initialCurso: Curso;
 
-  constructor(private router: Router, private cursoService: CursoService) {
+  constructor(private router: Router, private courseService: CourseService) {
     const navigation = this.router.getCurrentNavigation();
     this.isEdit = navigation?.extras?.state?.edit;
     this.silabo = navigation?.extras?.state?.silabo;
@@ -52,7 +52,7 @@ export class SilaboComponent implements OnInit {
   }
 
   listarCursosDisponibles() {
-    this.cursoService.listCourses().subscribe(
+    this.courseService.listCourses().subscribe(
       (response: Curso[]) => (this.cursos = response),
       (error) => console.log(error)
     );
