@@ -16,6 +16,7 @@ import { FormSilaboComponent } from './components/form-silabo/form-silabo.compon
 import { HeaderSilaboComponent } from './components/header-silabo/header-silabo.component';
 import { NewCourseComponent } from './components/new-course/new-course.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { TruncatePipe } from './pipes/truncate.pipe';
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
