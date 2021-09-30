@@ -37,20 +37,21 @@ export class NewCourseComponent implements OnInit {
   }
 
   saveCourse() {
-    console.log(this.courseForm.value);
     if (this.courseForm.valid) {
       console.log(this.courseForm.value);
-      this.courseService.saveCourse(this.courseForm).subscribe((response) => {
-        console.log(response);
-        if (response) {
-          alertify.set('notifier', 'position', 'top-right');
-          alertify.success('Curso guardado');
-          this.router.navigate(['silabos']);
-        } else {
-          alertify.set('notifier', 'position', 'top-right');
-          alertify.error('No se pudo guardar');
-        }
-      });
+      this.courseService
+        .saveCourse(this.courseForm.value)
+        .subscribe((response) => {
+          console.log(response);
+          if (response) {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.success('Curso guardado');
+            this.router.navigate(['silabos']);
+          } else {
+            alertify.set('notifier', 'position', 'top-right');
+            alertify.error('No se pudo guardar');
+          }
+        });
     }
   }
 }
