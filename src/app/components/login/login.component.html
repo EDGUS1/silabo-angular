@@ -11,6 +11,7 @@
         placeholder="name@example.com"
         formControlName="email"
         [class.is-invalid]="correoNoValido"
+        autofocus
       />
       <label for="floatingInput">Correo institucional</label>
       <small class="text-danger mt-3 mt-lg-0" *ngIf="correoNoValido">
