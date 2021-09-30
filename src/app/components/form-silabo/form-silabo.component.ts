@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Silabo } from 'src/app/models/silabo';
 import { SilaboService } from 'src/app/services/silabo.service';
@@ -17,7 +18,11 @@ export class FormSilaboComponent implements OnInit {
 
   faTrashAlt = faTrashAlt;
 
-  constructor(private fb: FormBuilder, private silaboService: SilaboService) {}
+  constructor(
+    private fb: FormBuilder,
+    private silaboService: SilaboService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.initForm(this.silabo);
@@ -53,7 +58,7 @@ export class FormSilaboComponent implements OnInit {
       console.log(newSilabo);
 
       this.silaboService.saveSilabo(newSilabo).subscribe(
-        (response) => console.log(response),
+        (response) => this.router.navigate(['silabos']),
         (err) => console.log(err)
       );
     }
