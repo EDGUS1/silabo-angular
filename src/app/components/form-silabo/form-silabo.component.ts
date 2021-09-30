@@ -48,7 +48,7 @@ export class FormSilaboComponent implements OnInit {
       let newSilabo = new Silabo();
       newSilabo.periodo_academico = this.silaboForm.get('semestre').value;
       newSilabo.asig_periodo_modalidad = this.silaboForm.get('modalidad').value;
-      newSilabo.asig_id = this.silabo?.asig_id || 1;
+      newSilabo.asig_id = this.silabo?.asig_id || this.curso?.asig_id || 1;
       newSilabo.user_id = 1;
       console.log(newSilabo);
 

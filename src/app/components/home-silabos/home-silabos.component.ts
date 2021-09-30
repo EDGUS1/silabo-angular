@@ -17,7 +17,7 @@ export class HomeSilabosComponent implements OnInit {
 
   silabos: Silabo[];
   page = 1;
-  pageSize = 2;
+  pageSize = 10;
 
   navigationExtras: NavigationExtras = {
     state: {
