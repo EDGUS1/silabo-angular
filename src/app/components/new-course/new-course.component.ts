@@ -26,10 +26,13 @@ export class NewCourseComponent implements OnInit {
       ciclo: ['', [Validators.required]],
       creditos: ['', [Validators.required]],
       sumilla: ['', [Validators.required]],
+      estrategia: ['', [Validators.required]],
+      plan: ['', [Validators.required]],
     });
   }
 
   saveCourse() {
+    console.log(this.courseForm.value);
     if (this.courseForm.valid) {
       console.log(this.courseForm.value);
       alertify.set('notifier', 'position', 'top-right');
