@@ -1,4 +1,4 @@
-export class Curso {
+export class Course {
   asig_ciclo: string;
   asig_codigo: string;
   asig_creditos: number;

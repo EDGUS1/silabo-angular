@@ -6,7 +6,7 @@ import {
   faPen,
   faFileDownload,
 } from '@fortawesome/free-solid-svg-icons';
-import { Curso } from 'src/app/models/curso';
+import { Course } from 'src/app/models/course';
 import { Silabo } from 'src/app/models/silabo';
 import { CourseService } from 'src/app/services/course.service';
 @Component({
@@ -25,9 +25,9 @@ export class SilaboComponent implements OnInit {
   isNewCourse: boolean;
 
   silabo: Silabo;
-  curso: Curso;
-  cursos: Curso[];
-  initialCurso: Curso;
+  curso: Course;
+  cursos: Course[];
+  initialCurso: Course;
 
   constructor(private router: Router, private courseService: CourseService) {
     const navigation = this.router.getCurrentNavigation();
@@ -37,7 +37,7 @@ export class SilaboComponent implements OnInit {
 
   ngOnInit(): void {
     this.isSelected = false;
-    this.initialCurso = new Curso();
+    this.initialCurso = new Course();
     this.curso = this.initialCurso;
     this.isNewCourse = false;
     this.listarCursosDisponibles();
@@ -53,7 +53,7 @@ export class SilaboComponent implements OnInit {
 
   listarCursosDisponibles() {
     this.courseService.listCourses().subscribe(
-      (response: Curso[]) => (this.cursos = response),
+      (response: Course[]) => (this.cursos = response),
       (error) => console.log(error)
     );
   }
