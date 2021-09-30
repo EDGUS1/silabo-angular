@@ -18,6 +18,12 @@ export class CourseService {
       .pipe(catchError(this.handleError));
   }
 
+  saveCourse(course) {
+    return this.http
+      .post(`${this.urlApi}/curso`, course)
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);
