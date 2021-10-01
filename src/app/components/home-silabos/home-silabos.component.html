@@ -81,8 +81,8 @@
         class="col-12 col-md-6 col-lg-4"
         *ngFor="
           let silabo of silabos
-            | slice: (page - 1) * pageSize:page * pageSize
             | search: 'asig_nombre':filterSearch
+            | slice: (page - 1) * pageSize:page * pageSize
         "
       >
         <app-card-silabo [silabo]="silabo"></app-card-silabo>
@@ -92,7 +92,9 @@
       <div
         class="col-12"
         *ngFor="
-          let silabo of silabos | slice: (page - 1) * pageSize:page * pageSize
+          let silabo of silabos
+            | search: 'asig_nombre':filterSearch
+            | slice: (page - 1) * pageSize:page * pageSize
         "
       >
         <app-card-silabos-list [silabo]="silabo"></app-card-silabos-list>
