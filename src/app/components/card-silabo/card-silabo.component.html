@@ -14,8 +14,8 @@
     <p class="card-text">
       {{ silabo?.asig_sumilla | truncate: "35" }}
     </p>
-    <div class="d-flex justify-content-between align-items-center">
-      <span>
+    <div class="d-flex justify-content-between align-items-center row">
+      <div class="col-md-7">
         <a class="btn btn-info" (click)="editSilabo()">
           <fa-icon [icon]="faPen"></fa-icon>
         </a>
@@ -28,8 +28,10 @@
         >
           <fa-icon [icon]="faFileDownload"></fa-icon>
         </button>
-      </span>
-      <small>{{ silabo?.updated_at | date: "short" }}</small>
+      </div>
+      <div class="col-md-5 mt-3 mt-md-0 p-0">
+        <small>{{ silabo?.updated_at | date: "short" }}</small>
+      </div>
     </div>
   </div>
 </div>
