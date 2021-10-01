@@ -17,6 +17,7 @@ import { HeaderSilaboComponent } from './components/header-silabo/header-silabo.
 import { NewCourseComponent } from './components/new-course/new-course.component';
 import { TruncatePipe } from './pipes/truncate.pipe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchPipe } from './pipes/search.pipe';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HeaderSilaboComponent,
     NewCourseComponent,
     TruncatePipe,
+    SearchPipe,
   ],
   imports: [
     BrowserModule,
