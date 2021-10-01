@@ -7,26 +7,23 @@
       class="form-control mt-2"
       formControlName="codigo"
       autocomplete="off"
+      placeholder="Codigo de la asignatura"
     />
   </div>
   <div class="col-sm-6 col-lg-4 my-2">
-    <label for="nombre_id">Nombre del curso</label>
+    <label for="nombre_id">Nombre de la asignatura</label>
     <input
       type="text"
       id="nombre_id"
       class="form-control mt-2"
       formControlName="nombre"
       autocomplete="off"
+      placeholder="Nombre de la asignatura"
     />
   </div>
   <div class="col-sm-6 col-lg-4 my-2">
     <label for="tipo_id">Tipo de asignatura</label>
-    <select
-      name=""
-      id="tipo_id"
-      class="form-select mt-2"
-      formControlName="tipo"
-    >
+    <select id="tipo_id" class="form-select mt-2" formControlName="tipo">
       <option value="" hidden>Seleccione</option>
       <option value="1">Obligatorio</option>
       <option value="2">Electivo</option>
@@ -34,12 +31,7 @@
   </div>
   <div class="col-sm-6 col-lg-4 my-2">
     <label for="horas_id">Horas semanales</label>
-    <select
-      name=""
-      id="horas_id"
-      class="form-select mt-2"
-      formControlName="horas"
-    >
+    <select id="horas_id" class="form-select mt-2" formControlName="horas">
       <option value="" hidden>Seleccione</option>
       <option value="1">3 Teoria - 2 Laboratorio</option>
       <option value="2">4 Teoria - 2 Laboratorio</option>
@@ -48,12 +40,7 @@
 
   <div class="col-sm-6 col-lg-4 my-2">
     <label for="ciclo_id">Ciclo</label>
-    <select
-      name=""
-      id="ciclo_id"
-      class="form-select mt-2"
-      formControlName="ciclo"
-    >
+    <select id="ciclo_id" class="form-select mt-2" formControlName="ciclo">
       <option value="" hidden>Seleccione</option>
       <option value="I">I Ciclo</option>
       <option value="II">II Ciclo</option>
@@ -70,7 +57,6 @@
   <div class="col-sm-6 col-md-3 col-lg-2 my-2">
     <label for="creditos_id">Créditos</label>
     <select
-      name=""
       id="creditos_id"
       class="form-select mt-2"
       formControlName="creditos"
@@ -82,12 +68,7 @@
   </div>
   <div class="col-sm-6 col-md-3 col-lg-2 my-2">
     <label for="plan_id">Plan</label>
-    <select
-      name=""
-      id="plan_id"
-      class="form-select mt-2"
-      formControlName="plan"
-    >
+    <select id="plan_id" class="form-select mt-2" formControlName="plan">
       <option value="" hidden>Seleccione</option>
       <option value="1">2015</option>
       <option value="2">2018</option>
@@ -96,7 +77,6 @@
   <div class="col-12 my-2">
     <label for="sumilla_id">Sumilla</label>
     <textarea
-      name=""
       id="sumilla_id"
       rows="4"
       class="form-control mt-2"
@@ -106,7 +86,6 @@
   <div class="col-12 my-2">
     <label for="estrategia_id">Estrategia didáctica</label>
     <textarea
-      name=""
       id="estrategia_id"
       rows="4"
       class="form-control mt-2"
