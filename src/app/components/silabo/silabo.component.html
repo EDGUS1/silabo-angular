@@ -1,8 +1,13 @@
 <div class="container mt-4">
   <app-header-silabo *ngIf="isEdit" [silabo]="silabo"></app-header-silabo>
 
-  <div *ngIf="isSelected || isNewCourse" class="my-2">
-    <span class="h3">Creando nuevo {{ isSelected ? "Silabo" : "Curso" }}</span>
+  <div *ngIf="isSelected || isNewCourse" class="my-3 d-flex align-items-center">
+    <button class="btn btn-outline-info" (click)="goBackOptions()">
+      <fa-icon [icon]="faChevronLeft"></fa-icon>
+    </button>
+    <span class="h3 m-0 px-3">
+      Creando nuevo {{ isSelected ? "Silabo" : "Curso" }}
+    </span>
   </div>
 
   <div

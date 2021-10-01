@@ -1,11 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import {
-  faTrashAlt,
-  faHeart,
-  faPen,
-  faFileDownload,
-} from '@fortawesome/free-solid-svg-icons';
+import { faChevronLeft } from '@fortawesome/free-solid-svg-icons';
 import { Course } from 'src/app/models/course';
 import { Silabo } from 'src/app/models/silabo';
 import { CourseService } from 'src/app/services/course.service';
@@ -15,10 +10,7 @@ import { CourseService } from 'src/app/services/course.service';
   styleUrls: ['./silabo.component.css'],
 })
 export class SilaboComponent implements OnInit {
-  faHeart = faHeart;
-  faTrashAlt = faTrashAlt;
-  faPen = faPen;
-  faFileDownload = faFileDownload;
+  faChevronLeft = faChevronLeft;
 
   isSelected: boolean;
   isEdit: boolean;
@@ -56,5 +48,10 @@ export class SilaboComponent implements OnInit {
       (response: Course[]) => (this.cursos = response),
       (error) => console.log(error)
     );
+  }
+
+  goBackOptions() {
+    this.isSelected = false;
+    this.isNewCourse = false;
   }
 }
