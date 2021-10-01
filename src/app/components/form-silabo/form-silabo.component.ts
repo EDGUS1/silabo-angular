@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { Course } from 'src/app/models/course';
 import { Silabo } from 'src/app/models/silabo';
 import { SilaboService } from 'src/app/services/silabo.service';
 @Component({
@@ -25,16 +26,30 @@ export class FormSilaboComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initForm(this.silabo);
+    console.log(this.curso);
+    this.isEdit ? this.initFormEdit(this.silabo) : this.initForm(this.curso);
   }
 
-  initForm(silabo: Silabo): void {
-    /* codigo: [
-      { value: silabo.asig_codigo, disabled: true },
-      [Validators.required],
-    ], */
+  initForm(curso: Course): void {
     this.silaboForm = this.fb.group({
-      codigo: [{ value: '', disabled: true }],
+      codigo: [{ value: curso.asig_codigo, disabled: true }],
+      nombre: [{ value: curso.asig_nombre, disabled: true }],
+      tipo: [{ value: curso.tipo_asignatura_id, disabled: true }],
+      horas: [{ value: curso.horas_sem_id, disabled: true }],
+      semestre: ['', [Validators.required]],
+      ciclo: [{ value: curso.asig_ciclo, disabled: true }],
+      creditos: [{ value: +curso.asig_creditos, disabled: true }],
+      modalidad: ['', [Validators.required]],
+      sumilla: [{ value: curso.asig_sumilla, disabled: true }],
+    });
+  }
+
+  initFormEdit(silabo: Silabo): void {
+    this.silaboForm = this.fb.group({
+      codigo: [
+        { value: silabo.asig_codigo, disabled: true },
+        [Validators.required],
+      ],
       nombre: [{ value: '', disabled: true }],
       tipo: [{ value: '', disabled: true }],
       horas: [{ value: '', disabled: true }],
