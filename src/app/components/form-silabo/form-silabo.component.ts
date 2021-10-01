@@ -32,15 +32,15 @@ export class FormSilaboComponent implements OnInit {
 
   initForm(curso: Course): void {
     this.silaboForm = this.fb.group({
-      codigo: [{ value: curso.asig_codigo, disabled: true }],
-      nombre: [{ value: curso.asig_nombre, disabled: true }],
-      tipo: [{ value: curso.tipo_asignatura_id, disabled: true }],
-      horas: [{ value: curso.horas_sem_id, disabled: true }],
+      codigo: [{ value: curso?.asig_codigo, disabled: true }],
+      nombre: [{ value: curso?.asig_nombre, disabled: true }],
+      tipo: [{ value: curso?.tipo_asignatura_id, disabled: true }],
+      horas: [{ value: curso?.horas_sem_id, disabled: true }],
       semestre: ['', [Validators.required]],
-      ciclo: [{ value: curso.asig_ciclo, disabled: true }],
-      creditos: [{ value: +curso.asig_creditos, disabled: true }],
+      ciclo: [{ value: curso?.asig_ciclo, disabled: true }],
+      creditos: [{ value: +curso?.asig_creditos, disabled: true }],
       modalidad: ['', [Validators.required]],
-      sumilla: [{ value: curso.asig_sumilla, disabled: true }],
+      sumilla: [{ value: curso?.asig_sumilla, disabled: true }],
     });
   }
 
