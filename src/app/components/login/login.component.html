@@ -1,7 +1,7 @@
 <div class="card form-signin text-center mt-4">
   <form [formGroup]="loginform" (submit)="cambiarVista($event)">
     <img class="my-4" src="assets/user.png" alt="" width="100" height="100" />
-    <h1 class="h3 mb-3 fw-normal my-3">Inicio de sesión</h1>
+    <h1 class="h3 fw-normal my-3">Inicio de sesión</h1>
 
     <div class="form-floating my-3">
       <input
@@ -14,7 +14,7 @@
         autofocus
       />
       <label for="floatingInput">Correo institucional</label>
-      <small class="text-danger mt-3" id="left" *ngIf="correoNoValido">
+      <small class="text-danger mt-3" *ngIf="correoNoValido">
         Ingrese un correo válido
       </small>
     </div>
@@ -37,6 +37,6 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit">
       Iniciar sesión
     </button>
-    <p class="mt-5 mb-3 text-muted">&copy; 2021</p>
+    <p class="my-3 text-muted">&copy; 2021</p>
   </form>
 </div>
