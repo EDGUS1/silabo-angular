@@ -2,8 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import alertify from 'alertifyjs';
+import { Hour } from 'src/app/models/hour';
+import { Plan } from 'src/app/models/plan';
 import { CourseService } from 'src/app/services/course.service';
 import { HoursService } from 'src/app/services/hours.service';
+import { PlanService } from 'src/app/services/plan.service';
 
 @Component({
   selector: 'app-new-course',
@@ -12,17 +15,21 @@ import { HoursService } from 'src/app/services/hours.service';
 })
 export class NewCourseComponent implements OnInit {
   courseForm: FormGroup = new FormGroup({});
-  hoursWeek: any[];
+  hoursWeek: Hour[];
+  plans: Plan[];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private courseService: CourseService,
-    private hoursService: HoursService
+    private hoursService: HoursService,
+    private planService: PlanService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
     this.listHoursPerWeek();
+    this.listAllPlans();
   }
 
   initForm(): void {
@@ -63,6 +70,12 @@ export class NewCourseComponent implements OnInit {
   listHoursPerWeek() {
     this.hoursService
       .listAllHours()
-      .subscribe((response: any[]) => (this.hoursWeek = response));
+      .subscribe((response: Hour[]) => (this.hoursWeek = response));
+  }
+
+  listAllPlans() {
+    this.planService
+      .listAllPlans()
+      .subscribe((response: Plan[]) => (this.plans = response));
   }
 }

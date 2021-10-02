@@ -71,8 +71,9 @@
     <label for="plan_id">Plan</label>
     <select id="plan_id" class="form-select mt-2" formControlName="plan">
       <option value="" hidden>Seleccione</option>
-      <option value="1">2015</option>
-      <option value="2">2018</option>
+      <option *ngFor="let p of plans" [ngValue]="p?.plan_id">
+        {{ p?.plan_nombre }}
+      </option>
     </select>
   </div>
   <div class="col-12 my-2">
