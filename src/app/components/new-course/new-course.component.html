@@ -38,7 +38,6 @@
       </option>
     </select>
   </div>
-
   <div class="col-sm-6 col-lg-4 my-2">
     <label for="ciclo_id">Ciclo</label>
     <select id="ciclo_id" class="form-select mt-2" formControlName="ciclo">
@@ -93,6 +92,23 @@
       class="form-control mt-2"
       formControlName="estrategia"
     ></textarea>
+  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="row m-4">
+        <div class="col-10">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Ingresa la competencia"
+            name="competencia"
+          />
+        </div>
+        <div class="col-2">
+          <button class="btn btn-success">Agregar</button>
+        </div>
+      </div>
+    </div>
   </div>
   <div class="col-12 my-3 d-flex flex-row-reverse">
     <button class="btn btn-primary px-5" (click)="saveCourse()">Guardar</button>
