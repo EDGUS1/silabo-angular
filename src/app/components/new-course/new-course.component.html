@@ -33,8 +33,9 @@
     <label for="horas_id">Horas semanales</label>
     <select id="horas_id" class="form-select mt-2" formControlName="horas">
       <option value="" hidden>Seleccione</option>
-      <option value="1">3 Teoria - 2 Laboratorio</option>
-      <option value="2">4 Teoria - 2 Laboratorio</option>
+      <option *ngFor="let h of hoursWeek" [ngValue]="h?.horas_sem_id">
+        {{ h?.teoria + " Teoria - " + h?.laboratorio + " Laboratorio" }}
+      </option>
     </select>
   </div>
 

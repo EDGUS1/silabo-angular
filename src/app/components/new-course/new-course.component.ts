@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import alertify from 'alertifyjs';
 import { CourseService } from 'src/app/services/course.service';
+import { HoursService } from 'src/app/services/hours.service';
 
 @Component({
   selector: 'app-new-course',
@@ -11,15 +12,17 @@ import { CourseService } from 'src/app/services/course.service';
 })
 export class NewCourseComponent implements OnInit {
   courseForm: FormGroup = new FormGroup({});
-
+  hoursWeek: any[];
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private courseService: CourseService
+    private courseService: CourseService,
+    private hoursService: HoursService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
+    this.listHoursPerWeek();
   }
 
   initForm(): void {
@@ -37,6 +40,8 @@ export class NewCourseComponent implements OnInit {
   }
 
   saveCourse() {
+    console.log(this.courseForm.value);
+
     if (this.courseForm.valid) {
       console.log(this.courseForm.value);
       this.courseService
@@ -53,5 +58,11 @@ export class NewCourseComponent implements OnInit {
           }
         });
     }
+  }
+
+  listHoursPerWeek() {
+    this.hoursService
+      .listAllHours()
+      .subscribe((response: any[]) => (this.hoursWeek = response));
   }
 }
