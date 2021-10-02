@@ -33,6 +33,18 @@ export class SilaboService {
     );
   }
 
+  deleteSilabo(id: number) {
+    return this.http
+      .delete(`${this.urlApi}/silabo/${id}`)
+      .pipe(catchError(this.handleError));
+  }
+
+  changeSilaboFavorito(id: number, favorito: boolean) {
+    return this.http
+      .put(`${this.urlApi}/silabo/favorito`, { id, favorito })
+      .pipe(catchError(this.handleError));
+  }
+
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.log('Client error', error.error.message);

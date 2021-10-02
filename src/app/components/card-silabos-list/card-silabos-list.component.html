@@ -13,13 +13,23 @@
     <span class="h5">{{ silabo?.asig_nombre }}</span>
   </ng-container>
   <span>
-    <button class="btn btn-outline-danger mx-2">
+    <button
+      class="btn mx-2"
+      [ngClass]="{
+        'btn-danger': silabo?.favorito,
+        'btn-outline-danger': !silabo?.favorito
+      }"
+      (click)="updateFavoritos(silabo?.asig_periodo_id, silabo?.favorito)"
+    >
       <fa-icon [icon]="faHeart"></fa-icon>
     </button>
     <a class="btn btn-info mx-2" (click)="editSilabo()">
       <fa-icon [icon]="faPen"></fa-icon>
     </a>
-    <button class="btn btn-warning mx-2">
+    <button
+      class="btn btn-warning mx-2"
+      (click)="deleteSilabo(silabo?.asig_periodo_id)"
+    >
       <fa-icon [icon]="faTrashAlt"></fa-icon>
     </button>
   </span>

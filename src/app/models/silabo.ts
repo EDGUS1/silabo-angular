@@ -14,4 +14,5 @@ export class Silabo {
   asig_periodo_modalidad: string;
   user_id: number;
   updated_at: Date;
+  favorito: boolean;
 }

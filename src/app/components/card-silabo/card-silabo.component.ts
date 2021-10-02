@@ -34,8 +34,13 @@ export class CardSilaboComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  deleteSilabo() {
-    alert('delete');
+  deleteSilabo(silaboId: number) {
+    this.silaboService.deleteSilabo(silaboId).subscribe((response) => {
+      console.log(response);
+      alertify.set('notifier', 'position', 'top-right');
+      alertify.success('Silabo eliminado');
+      // output para actualizar los silabos
+    });
   }
 
   editSilabo() {
@@ -56,5 +61,13 @@ export class CardSilaboComponent implements OnInit {
       a.click();
       return url;
     });
+  }
+
+  updateFavoritos(silaboId: number, favorito: boolean) {
+    this.silaboService
+      .changeSilaboFavorito(silaboId, !favorito)
+      .subscribe((res) => {
+        console.log(res);
+      });
   }
 }
