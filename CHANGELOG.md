@@ -2,6 +2,42 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.2.0](https://github.com/EDGUS1/silabo-angular/compare/v0.1.0...v0.2.0) (2021-10-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* update version of angular
+
+### Features
+
+* add back button ([73fd541](https://github.com/EDGUS1/silabo-angular/commit/73fd541c4b2717613e6971ac6783c9a66201c99d))
+* add button functionality ([2c56051](https://github.com/EDGUS1/silabo-angular/commit/2c56051909db80b078ce63ec747c2cefdd43639d))
+* add course component ([dc02399](https://github.com/EDGUS1/silabo-angular/commit/dc0239970275ad15a2db758c43637595b6ce0f62))
+* add guard to routes ([f7f8e7b](https://github.com/EDGUS1/silabo-angular/commit/f7f8e7bb52709a6385efbc964e14b35326e2b0bc))
+* add pagination ([974c77f](https://github.com/EDGUS1/silabo-angular/commit/974c77fc4496bbb70168f872352744b2fa22ed21))
+* add save course service ([c846aae](https://github.com/EDGUS1/silabo-angular/commit/c846aae444d9bf524b1ee284af65f9bc16cdfc7f))
+* add search filter ([261bf09](https://github.com/EDGUS1/silabo-angular/commit/261bf09c9024b46815a94fee4a7897afcc3b07ba))
+* add silabo object to path ([b427683](https://github.com/EDGUS1/silabo-angular/commit/b427683e84106976e9a648584dd08aeb9da2aa41))
+* add styles and download pdf ([80d8554](https://github.com/EDGUS1/silabo-angular/commit/80d8554b953d6d3e0649244aa9d1680ef25282eb))
+* create truncate pipe ([ffb79cb](https://github.com/EDGUS1/silabo-angular/commit/ffb79cb5caac6b41e79c89312a1d3be0f0422b10))
+* form new course ([72ad222](https://github.com/EDGUS1/silabo-angular/commit/72ad222a1db61e87f370c676aff2ae62baf3c9ee))
+* format files ([931caee](https://github.com/EDGUS1/silabo-angular/commit/931caeefc9ffee574f5a8f73ab064a043958bc94))
+* implement new course form ([4510636](https://github.com/EDGUS1/silabo-angular/commit/45106369a30cf30e11fe4567dc022aac0239befb))
+* list plan from api and create new models ([dd4b506](https://github.com/EDGUS1/silabo-angular/commit/dd4b506407bd2e210323c685f1d1b6871785936a))
+* load course variables ([073be1b](https://github.com/EDGUS1/silabo-angular/commit/073be1b9f935953b68e60a8fdde04a2fe096c42d))
+* load hour of course from api ([fb2e822](https://github.com/EDGUS1/silabo-angular/commit/fb2e822c6706bbe1bfea42a4e0851417f112f1e9))
+* manage edit and new silabo forms ([5fb829e](https://github.com/EDGUS1/silabo-angular/commit/5fb829e5b1169087d97da901099ffd4518f985b0))
+* save course ([f00fc85](https://github.com/EDGUS1/silabo-angular/commit/f00fc85b0abda8a03fd65c19bec754773db4c36f))
+* update list of silabos ([ddf4312](https://github.com/EDGUS1/silabo-angular/commit/ddf43128176660a8a62d371732ede6630f4adc14))
+* update version of angular ([9f15d99](https://github.com/EDGUS1/silabo-angular/commit/9f15d99c1b12c12c6c316723aed132bae90c7634))
+
+
+### Bug Fixes
+
+* case null of truncate pipe ([e3079c7](https://github.com/EDGUS1/silabo-angular/commit/e3079c771e3d2b63225b19be1580cb5408749d5d))
+* number of pages of pagination ([894a0fc](https://github.com/EDGUS1/silabo-angular/commit/894a0fc098e5c781b9ed5421102418dbe8f3d34a))
+
 ## [0.1.0](https://github.com/EDGUS1/silabo-angular/compare/v0.0.1...v0.1.0) (2021-09-27)
 
 
