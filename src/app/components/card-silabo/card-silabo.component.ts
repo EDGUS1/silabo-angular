@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import {
   faHeart,
@@ -17,6 +17,7 @@ import alertify from 'alertifyjs';
 })
 export class CardSilaboComponent implements OnInit {
   @Input() silabo: Silabo;
+  @Output() actualizar = new EventEmitter();
 
   faHeart = faHeart;
   faTrashAlt = faTrashAlt;
@@ -36,11 +37,14 @@ export class CardSilaboComponent implements OnInit {
 
   deleteSilabo(silaboId: number) {
     this.silaboService.deleteSilabo(silaboId).subscribe((response) => {
-      console.log(response);
       alertify.set('notifier', 'position', 'top-right');
       alertify.success('Silabo eliminado');
-      // output para actualizar los silabos
+      this.updateSilabos();
     });
+  }
+
+  updateSilabos() {
+    this.actualizar.emit();
   }
 
   editSilabo() {
@@ -64,10 +68,9 @@ export class CardSilaboComponent implements OnInit {
   }
 
   updateFavoritos(silaboId: number, favorito: boolean) {
-    this.silaboService
-      .changeSilaboFavorito(silaboId, !favorito)
-      .subscribe((res) => {
-        console.log(res);
-      });
+    this.silaboService.changeSilaboFavorito(silaboId, !favorito).subscribe(
+      (res) => this.updateSilabos(),
+      (err) => console.log(err)
+    );
   }
 }

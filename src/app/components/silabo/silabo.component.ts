@@ -53,5 +53,6 @@ export class SilaboComponent implements OnInit {
   goBackOptions() {
     this.isSelected = false;
     this.isNewCourse = false;
+    this.curso = this.initialCurso;
   }
 }

@@ -92,7 +92,10 @@
             | slice: (page - 1) * pageSize:page * pageSize
         "
       >
-        <app-card-silabo [silabo]="silabo"></app-card-silabo>
+        <app-card-silabo
+          [silabo]="silabo"
+          (actualizar)="listSilabos(1)"
+        ></app-card-silabo>
       </div>
     </ng-container>
     <ng-template #silaboslist>
