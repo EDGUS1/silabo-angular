@@ -53,4 +53,9 @@ export class HomeSilabosComponent implements OnInit {
   createSilabo(): void {
     this.router.navigate(['silabo'], this.navigationExtras);
   }
+
+  changeFilterValue() {
+    if (this.filterSelect == 3)
+      this.silabos = this.silabos.filter((s) => s.favorito);
+  }
 }

@@ -3,7 +3,11 @@
     <div class="col-12 col-lg-8">
       <div class="row">
         <div class="col-12 col-sm-4">
-          <select [(ngModel)]="filterSelect" class="form-select form-select-sm">
+          <select
+            [(ngModel)]="filterSelect"
+            class="form-select form-select-sm"
+            (change)="changeFilterValue()"
+          >
             <option value="0" hidden>Seleccione</option>
             <option value="1">Ordenar por nombre</option>
             <option value="2">Ordenar por fecha</option>
