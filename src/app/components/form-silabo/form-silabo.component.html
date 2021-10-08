@@ -98,27 +98,42 @@
       formControlName="sumilla"
     ></textarea>
   </div>
-  <div class="col-6 my-2">
+  <div class="col-12 col-lg-6 my-2">
     <div class="row">
       <div class="col-12">
-        <label for="">Docentes</label>
-        <select name="" id="" class="form-select mt-2">
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
+        <label for="docente_id">Docentes</label>
+        <select
+          name=""
+          id="docente_id"
+          class="form-select mt-2"
+          [(ngModel)]="docente"
+          [ngModelOptions]="{ standalone: true }"
+          (change)="addNewDocente()"
+        >
+          <option [ngValue]="initialDocente" hidden>Seleccione</option>
+          <option *ngFor="let d of listdocentes" [ngValue]="d">
+            {{ d?.docente_correo }}
+          </option>
         </select>
       </div>
       <div class="col-12 mt-2">
-        <div class="card table-responsive p-3">
-          <table class="table">
+        <div class="card table-responsive p-3 pb-0">
+          <span *ngIf="docentesSeleccionados?.length === 0"
+            >No hay docentes agregados</span
+          >
+          <table class="table table-borderless">
             <tbody>
-              <tr *ngFor="let i of [1, 2, 2, 3, 4]">
-                <td>Nombre del docente</td>
-                <td>correo del docente</td>
+              <tr *ngFor="let d of docentesSeleccionados">
                 <td>
-                  <button class="btn btn-sm btn-danger mx-1">
-                    <!-- <fa-icon [icon]="faTrashAlt"></fa-icon> -->X
+                  {{ d?.docente_nombre + " " + d?.docente_apellido_paterno }}
+                </td>
+                <td>{{ d?.docente_correo }}</td>
+                <td>
+                  <button
+                    class="btn btn-sm btn-danger mx-1"
+                    (click)="deleteDocente(d?.docente_id)"
+                  >
+                    x
                   </button>
                 </td>
               </tr>
@@ -157,7 +172,7 @@
       </div>
     </div>
   </div>
-  <div class="col-6 my-2">
+  <!-- <div class="col-6 my-2">
     <div class="row">
       <div class="col-12">
         <label for="">Competencias especificas</label>
@@ -214,7 +229,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <div class="col-12 my-3 d-flex flex-row-reverse">
     <button class="btn btn-outline-primary" (click)="saveSilabo()">
       Guardar

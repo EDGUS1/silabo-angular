@@ -3,7 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { Course } from 'src/app/models/course';
+import { Docente } from 'src/app/models/docente';
 import { Silabo } from 'src/app/models/silabo';
+import { DocenteService } from 'src/app/services/docente.service';
 import { SilaboService } from 'src/app/services/silabo.service';
 @Component({
   selector: 'app-form-silabo',
@@ -18,15 +20,23 @@ export class FormSilaboComponent implements OnInit {
   silaboForm: FormGroup = new FormGroup({});
 
   faTrashAlt = faTrashAlt;
+  listdocentes: Docente[];
+  initialDocente: Docente;
+  docente: Docente;
+  docentesSeleccionados: Docente[] = [];
 
   constructor(
     private fb: FormBuilder,
     private silaboService: SilaboService,
-    private router: Router
+    private router: Router,
+    private docenteService: DocenteService
   ) {}
 
   ngOnInit(): void {
     console.log(this.curso);
+    this.initialDocente = new Docente();
+    this.docente = this.initialDocente;
+    this.listDocentes();
     this.isEdit ? this.initFormEdit(this.silabo) : this.initForm(this.curso);
   }
 
@@ -68,7 +78,7 @@ export class FormSilaboComponent implements OnInit {
       let newSilabo = new Silabo();
       newSilabo.periodo_academico = this.silaboForm.get('semestre').value;
       newSilabo.asig_periodo_modalidad = this.silaboForm.get('modalidad').value;
-      newSilabo.asig_id = this.silabo?.asig_id || this.curso?.asig_id || 1;
+      newSilabo.asig_id = this.silabo?.asig_id || this.curso?.asig_id;
       newSilabo.user_id = 1;
       console.log(newSilabo);
 
@@ -77,5 +87,28 @@ export class FormSilaboComponent implements OnInit {
         (err) => console.log(err)
       );
     }
+  }
+
+  listDocentes() {
+    this.docenteService
+      .listAll()
+      .subscribe((response: Docente[]) => (this.listdocentes = response));
+  }
+
+  addNewDocente() {
+    if (
+      !this.docentesSeleccionados.find(
+        (e) => e.docente_id == this.docente.docente_id
+      )
+    ) {
+      this.docentesSeleccionados.push(this.docente);
+      this.docente = this.initialDocente;
+    }
+  }
+
+  deleteDocente(id: number) {
+    this.docentesSeleccionados = this.docentesSeleccionados.filter(
+      (e) => e.docente_id !== id
+    );
   }
 }
