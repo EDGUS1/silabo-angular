@@ -41,17 +41,20 @@ export class LoginComponent implements OnInit {
   login(email: string, passwrod: string) {
     this.authService.login(email, passwrod).subscribe(
       (response) => {
-        if (response?.length > 0) {
-          sessionStorage.setItem('email', response[0]['usuario_email']);
+        console.log(response);
+
+        if (response?.error) {
+          alertify.set('notifier', 'position', 'top-right');
+          alertify.error('Credenciales incorrectas');
+        } else {
+          sessionStorage.setItem('email', response['user_email']);
+          sessionStorage.setItem('token', response['token']);
           this.authService.toggle();
 
           alertify.set('notifier', 'position', 'top-right');
           alertify.success('Inicio de sesión corrrecto');
 
           this.router.navigate(['silabos']);
-        } else {
-          alertify.set('notifier', 'position', 'top-right');
-          alertify.error('Credenciales incorrectas');
         }
       },
       (err) => console.log(err)
