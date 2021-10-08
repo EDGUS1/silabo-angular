@@ -18,8 +18,6 @@ export class NewCourseComponent implements OnInit {
 
   hoursWeek: Hour[];
   plans: Plan[];
-  competencia: string = '';
-  competencias: any[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -77,23 +75,5 @@ export class NewCourseComponent implements OnInit {
     this.planService
       .listAllPlans()
       .subscribe((response: Plan[]) => (this.plans = response));
-  }
-
-  addNewCompetencia() {
-    const id =
-      this.competencias.length > 0
-        ? this.competencias[this.competencias.length - 1]?.id + 1
-        : 0;
-    if (this.competencia != '') {
-      this.competencias.push({
-        id,
-        nombre: this.competencia,
-      });
-      this.competencia = '';
-    }
-  }
-
-  deleteCompetencia(id: number) {
-    this.competencias = this.competencias.filter((comp) => comp.id != id);
   }
 }

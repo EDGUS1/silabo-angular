@@ -143,26 +143,40 @@
       </div>
     </div>
   </div>
-  <div class="col-6 my-2">
+  <div class="col-12 col-lg-6 my-2">
     <div class="row">
       <div class="col-12">
-        <label for="">Competencias generales</label>
-        <select name="" id="" class="form-select mt-2">
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
+        <label for="competencia_especifica">Competencias Especificas</label>
+        <select
+          name=""
+          id="competencia_especifica_id"
+          class="form-select mt-2"
+          [(ngModel)]="compentenciaEspecifica"
+          [ngModelOptions]="{ standalone: true }"
+          (change)="addNewCompetencia()"
+        >
+          <option [ngValue]="initialCompetencia" hidden>Seleccione</option>
+          <option *ngFor="let c of listCompetencias" [ngValue]="c">
+            {{ c?.comp_esp_nombre }}
+          </option>
         </select>
       </div>
       <div class="col-12 mt-2">
-        <div class="card table-responsive p-3">
-          <table class="table">
+        <div class="card table-responsive p-3 pb-0">
+          <span *ngIf="competenciasSeleccionadas?.length === 0"
+            >No hay competencias agregadas</span
+          >
+          <table class="table table-borderless">
             <tbody>
-              <tr *ngFor="let i of [1, 2, 2, 3, 4]">
-                <td>Competencia general</td>
+              <tr *ngFor="let c of competenciasSeleccionadas">
+                <td>{{ c?.comp_esp_codigo }}</td>
+                <td>{{ c?.comp_esp_nombre }}</td>
                 <td>
-                  <button class="btn btn-sm btn-danger mx-1">
-                    <fa-icon [icon]="faTrashAlt"></fa-icon>
+                  <button
+                    class="btn btn-sm btn-danger mx-1"
+                    (click)="deleteCompetencia(c?.comp_esp_id)"
+                  >
+                    x
                   </button>
                 </td>
               </tr>
@@ -172,26 +186,40 @@
       </div>
     </div>
   </div>
-  <!-- <div class="col-6 my-2">
+  <div class="col-12 my-2">
     <div class="row">
       <div class="col-12">
-        <label for="">Competencias especificas</label>
-        <select name="" id="" class="form-select mt-2">
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-        </select>
+        <label for="capacidad_id">Capacidades</label>
+      </div>
+      <div class="col-sm-10 mt-2">
+        <input
+          id="capacidad_id"
+          type="text"
+          class="form-control"
+          placeholder="Ingresa la capacidad"
+          name="capacidad"
+          [(ngModel)]="capacidad"
+          [ngModelOptions]="{ standalone: true }"
+        />
+      </div>
+      <div class="col-sm-2 mt-2">
+        <button class="btn btn-success" (click)="addNewCapacidad()">
+          Agregar
+        </button>
       </div>
       <div class="col-12 mt-2">
         <div class="card table-responsive p-3">
-          <table class="table">
+          <span *ngIf="listcapacidades.length == 0">No hay capacidades</span>
+          <table class="table table-borderless">
             <tbody>
-              <tr *ngFor="let i of [1, 2, 2, 3, 4]">
-                <td>Competencia especifica</td>
+              <tr *ngFor="let com of listcapacidades; let i = index">
+                <td>{{ com.nombre }}</td>
                 <td>
-                  <button class="btn btn-sm btn-danger mx-1">
-                    <fa-icon [icon]="faTrashAlt"></fa-icon>
+                  <button
+                    class="btn btn-danger mx-1"
+                    (click)="deleteCapacidad(com.id)"
+                  >
+                    x
                   </button>
                 </td>
               </tr>
@@ -201,35 +229,6 @@
       </div>
     </div>
   </div>
-  <div class="col-6 my-2">
-    <div class="row">
-      <div class="col-12">
-        <label for="">Capacidades</label>
-        <select name="" id="" class="form-select mt-2">
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-          <option value="">Seleccione</option>
-        </select>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="card table-responsive p-3">
-          <table class="table">
-            <tbody>
-              <tr *ngFor="let i of [1, 2, 2, 3, 4]">
-                <td>Capacidad</td>
-                <td>
-                  <button class="btn btn-sm btn-danger mx-1">
-                    <fa-icon [icon]="faTrashAlt"></fa-icon>
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div> -->
   <div class="col-12 my-3 d-flex flex-row-reverse">
     <button class="btn btn-outline-primary" (click)="saveSilabo()">
       Guardar

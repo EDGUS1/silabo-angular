@@ -2,9 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { CompentenciaEspecifica } from 'src/app/models/compentencia-especifica';
 import { Course } from 'src/app/models/course';
 import { Docente } from 'src/app/models/docente';
 import { Silabo } from 'src/app/models/silabo';
+import { CompetenciaService } from 'src/app/services/competencia.service';
 import { DocenteService } from 'src/app/services/docente.service';
 import { SilaboService } from 'src/app/services/silabo.service';
 @Component({
@@ -15,29 +17,47 @@ import { SilaboService } from 'src/app/services/silabo.service';
 export class FormSilaboComponent implements OnInit {
   @Input() silabo: Silabo;
   @Input() isEdit: boolean;
-  @Input() curso: any;
+  @Input() curso: Course;
 
   silaboForm: FormGroup = new FormGroup({});
 
   faTrashAlt = faTrashAlt;
+
   listdocentes: Docente[];
   initialDocente: Docente;
   docente: Docente;
   docentesSeleccionados: Docente[] = [];
 
+  listCompetencias: CompentenciaEspecifica[];
+  compentenciaEspecifica: CompentenciaEspecifica;
+  initialCompetencia: CompentenciaEspecifica;
+  competenciasSeleccionadas: CompentenciaEspecifica[] = [];
+
+  listcapacidades: any[] = [];
+  capacidad: string = '';
+
   constructor(
     private fb: FormBuilder,
     private silaboService: SilaboService,
     private router: Router,
-    private docenteService: DocenteService
+    private docenteService: DocenteService,
+    private competenciaService: CompetenciaService
   ) {}
 
   ngOnInit(): void {
     console.log(this.curso);
+
     this.initialDocente = new Docente();
     this.docente = this.initialDocente;
+
+    this.initialCompetencia = new CompentenciaEspecifica();
+    this.compentenciaEspecifica = this.initialCompetencia;
+
     this.listDocentes();
+
     this.isEdit ? this.initFormEdit(this.silabo) : this.initForm(this.curso);
+
+    this.listCompentenciasEspecificas(this.curso.asig_id);
   }
 
   initForm(curso: Course): void {
@@ -110,5 +130,49 @@ export class FormSilaboComponent implements OnInit {
     this.docentesSeleccionados = this.docentesSeleccionados.filter(
       (e) => e.docente_id !== id
     );
+  }
+
+  listCompentenciasEspecificas(id: number) {
+    this.competenciaService
+      .listCompetenciasEspecificas(id)
+      .subscribe(
+        (response: CompentenciaEspecifica[]) =>
+          (this.listCompetencias = response)
+      );
+  }
+
+  addNewCompetencia() {
+    if (
+      !this.competenciasSeleccionadas.find(
+        (e) => e.comp_esp_id == this.compentenciaEspecifica.comp_esp_id
+      )
+    ) {
+      this.competenciasSeleccionadas.push(this.compentenciaEspecifica);
+      this.compentenciaEspecifica = this.initialCompetencia;
+    }
+  }
+
+  deleteCompetencia(id) {
+    this.competenciasSeleccionadas = this.competenciasSeleccionadas.filter(
+      (e) => e.comp_esp_id !== id
+    );
+  }
+
+  addNewCapacidad() {
+    const id =
+      this.listcapacidades.length > 0
+        ? this.listcapacidades[this.listcapacidades.length - 1]?.id + 1
+        : 0;
+    if (this.capacidad != '') {
+      this.listcapacidades.push({
+        id,
+        nombre: this.capacidad,
+      });
+      this.capacidad = '';
+    }
+  }
+
+  deleteCapacidad(id: number) {
+    this.listcapacidades = this.listcapacidades.filter((comp) => comp.id != id);
   }
 }
