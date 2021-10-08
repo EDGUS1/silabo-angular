@@ -1,4 +1,6 @@
 import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -12,7 +14,7 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [LoginComponent],
-      imports: [ReactiveFormsModule, HttpClientModule],
+      imports: [ReactiveFormsModule, HttpClientTestingModule],
       providers: [
         {
           provide: Router,
@@ -32,5 +34,15 @@ describe('LoginComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('login', async (done: DoneFn) => {
+    let email = component.loginform.controls['email'];
+    let password = component.loginform.controls['password'];
+    email.setValue('eduardo@gmail.com');
+    password.setValue('123456');
+
+    await component.login(email.value, password.value);
+    done();
   });
 });
