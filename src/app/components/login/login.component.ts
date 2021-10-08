@@ -41,8 +41,6 @@ export class LoginComponent implements OnInit {
   login(email: string, passwrod: string) {
     this.authService.login(email, passwrod).subscribe(
       (response) => {
-        console.log(response);
-
         if (response?.error) {
           alertify.set('notifier', 'position', 'top-right');
           alertify.error('Credenciales incorrectas');
