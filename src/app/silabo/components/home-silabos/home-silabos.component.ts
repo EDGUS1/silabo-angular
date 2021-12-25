@@ -51,7 +51,7 @@ export class HomeSilabosComponent implements OnInit {
   }
 
   createSilabo(): void {
-    this.router.navigate(['silabo'], this.navigationExtras);
+    this.router.navigate(['silabo/config'], this.navigationExtras);
   }
 
   changeFilterValue() {

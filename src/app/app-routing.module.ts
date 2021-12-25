@@ -1,26 +1,18 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeSilabosComponent } from './components/home-silabos/home-silabos.component';
-import { LoginComponent } from './components/login/login.component';
-import { SilaboComponent } from './components/silabo/silabo.component';
+
 import { AuthGuard } from './guards/auth.guard';
 import { NoauthGuard } from './guards/noauth.guard';
 
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent,
-    canActivate: [NoauthGuard],
-  },
-  {
-    path: 'silabos',
-    component: HomeSilabosComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   {
     path: 'silabo',
-    component: SilaboComponent,
-    canActivate: [AuthGuard],
+    loadChildren: () =>
+      import('./silabo/silabo.module').then((m) => m.SilaboModule),
   },
   {
     path: '**',

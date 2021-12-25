@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
           alertify.set('notifier', 'position', 'top-right');
           alertify.success('Inicio de sesión corrrecto');
 
-          this.router.navigate(['silabos']);
+          this.router.navigate(['silabo']);
         }
       },
       (err) => console.log(err)

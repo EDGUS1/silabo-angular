@@ -56,7 +56,7 @@ export class NewCourseComponent implements OnInit {
           if (response) {
             alertify.set('notifier', 'position', 'top-right');
             alertify.success('Curso guardado');
-            this.router.navigate(['silabos']);
+            this.router.navigate(['silabo']);
           } else {
             alertify.set('notifier', 'position', 'top-right');
             alertify.error('No se pudo guardar');

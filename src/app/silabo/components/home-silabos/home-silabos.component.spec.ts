@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { SearchPipe } from 'src/app/pipes/search.pipe';
+import { SearchPipe } from 'src/app/silabo/pipes/search.pipe';
 
 import { HomeSilabosComponent } from './home-silabos.component';
 

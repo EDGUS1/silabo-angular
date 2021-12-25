@@ -30,7 +30,7 @@ export class CardSilabosListComponent implements OnInit {
 
   editSilabo() {
     this.navigationExtras.state!.silabo = this.silabo;
-    this.router.navigate(['/silabo'], this.navigationExtras);
+    this.router.navigate(['/silabo/config'], this.navigationExtras);
   }
 
   deleteSilabo(silaboId: number) {

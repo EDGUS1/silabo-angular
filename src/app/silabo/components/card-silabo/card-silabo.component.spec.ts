@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { Router } from '@angular/router';
-import { TruncatePipe } from 'src/app/pipes/truncate.pipe';
+import { TruncatePipe } from 'src/app/silabo/pipes/truncate.pipe';
 
 import { CardSilaboComponent } from './card-silabo.component';
 

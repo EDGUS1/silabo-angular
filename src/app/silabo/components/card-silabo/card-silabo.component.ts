@@ -49,7 +49,7 @@ export class CardSilaboComponent implements OnInit {
 
   editSilabo() {
     this.navigationExtras.state!.silabo = this.silabo;
-    this.router.navigate(['/silabo'], this.navigationExtras);
+    this.router.navigate(['/silabo/config'], this.navigationExtras);
   }
 
   downloadSilabo(id: number) {

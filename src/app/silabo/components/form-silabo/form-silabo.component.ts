@@ -103,7 +103,7 @@ export class FormSilaboComponent implements OnInit {
       console.log(newSilabo);
 
       this.silaboService.saveSilabo(newSilabo).subscribe(
-        (response) => this.router.navigate(['silabos']),
+        (response) => this.router.navigate(['silabo']),
         (err) => console.log(err)
       );
     }

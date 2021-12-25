@@ -23,7 +23,7 @@ export class NoauthGuard implements CanActivate {
     | boolean
     | UrlTree {
     if (!this.authService.getIsAuthenticated()) return true;
-    this.router.navigate(['/silabos']);
+    this.router.navigate(['/silabo']);
     return false;
   }
 }
