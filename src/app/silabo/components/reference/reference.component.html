@@ -1,0 +1,70 @@
+<div class="modal-header">
+  <h5 class="modal-title">Nueva referencia</h5>
+
+  <button
+    type="button"
+    class="btn btn-close mx-1"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="closeModal('dismiss')"
+  >
+    <!-- <span aria-hidden="true">&times;</span> -->
+  </button>
+</div>
+
+<div class="modal-body">
+  <div class="container-fluid" [formGroup]="referenciaForm">
+    <input type="hidden" ngbAutofocus />
+    <div class="col-12 my-2">
+      <label for="nombreId">Nombre del libro</label>
+      <input
+        id="nombreId"
+        type="text"
+        class="form-control"
+        formControlName="libro_nombre"
+      />
+    </div>
+    <div class="col-12 my-2">
+      <label for="anioId">Año de publicación</label>
+      <input
+        id="anioId"
+        type="number"
+        class="form-control"
+        formControlName="libro_fecha"
+      />
+    </div>
+    <div class="col-12 my-2">
+      <label for="edicionId">Número de edición</label>
+      <input
+        id="edicionId"
+        type="number"
+        class="form-control"
+        formControlName="edicion"
+      />
+    </div>
+    <div class="col-12 my-2">
+      <label for="editorialId">Nombre de la editorial</label>
+      <input
+        id="editorialId"
+        type="text"
+        class="form-control"
+        formControlName="editorial_nombre"
+      />
+    </div>
+    <div class="col-12 my-2">
+      <label for="paginaId">Número de paginas</label>
+      <input
+        id="paginaId"
+        type="number"
+        class="form-control"
+        formControlName="paginas"
+      />
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="saveReference()">
+    Guardar
+  </button>
+</div>
