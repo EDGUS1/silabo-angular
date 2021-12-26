@@ -1,7 +1,9 @@
-<div class="card form-signin text-center mt-4">
+<div class="card form-signin mt-4">
   <form [formGroup]="loginform" (submit)="cambiarVista($event)">
-    <img class="my-4" src="assets/user.png" alt="" width="100" height="100" />
-    <h1 class="h3 fw-normal my-3">Inicio de sesión</h1>
+    <span class="d-flex justify-content-center">
+      <img class="my-4" src="assets/user.png" alt="" width="100" height="100" />
+    </span>
+    <h1 class="h3 fw-normal my-3 text-center">Inicio de sesión</h1>
 
     <div class="form-floating my-3">
       <input
@@ -37,6 +39,6 @@
     <button class="w-100 btn btn-lg btn-primary" type="submit">
       Iniciar sesión
     </button>
-    <p class="my-3 text-muted">&copy; 2021</p>
+    <p class="my-3 text-muted text-center">&copy; 2021</p>
   </form>
 </div>

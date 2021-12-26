@@ -130,10 +130,10 @@
                 <td>{{ d?.docente_correo }}</td>
                 <td>
                   <button
-                    class="btn btn-sm btn-danger mx-1"
+                    class="btn btn-danger mx-1"
                     (click)="deleteDocente(d?.docente_id)"
                   >
-                    x
+                    X
                   </button>
                 </td>
               </tr>
@@ -173,10 +173,10 @@
                 <td>{{ c?.comp_esp_nombre }}</td>
                 <td>
                   <button
-                    class="btn btn-sm btn-danger mx-1"
+                    class="btn btn-danger mx-1"
                     (click)="deleteCompetencia(c?.comp_esp_id)"
                   >
-                    x
+                    X
                   </button>
                 </td>
               </tr>
@@ -209,7 +209,9 @@
       </div>
       <div class="col-12 mt-2">
         <div class="card table-responsive p-3">
-          <span *ngIf="listcapacidades.length == 0">No hay capacidades</span>
+          <span *ngIf="listcapacidades.length == 0">
+            No hay capacidades agregadas
+          </span>
           <table class="table table-borderless">
             <tbody>
               <tr *ngFor="let com of listcapacidades; let i = index">
@@ -219,7 +221,7 @@
                     class="btn btn-danger mx-1"
                     (click)="deleteCapacidad(com.id)"
                   >
-                    x
+                    X
                   </button>
                 </td>
               </tr>
@@ -228,6 +230,11 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-12 my-2">
+    <button class="btn btn-outline-info" (click)="newReference()">
+      Agregar referencia
+    </button>
   </div>
   <div class="col-12 my-3 d-flex flex-row-reverse">
     <button class="btn btn-outline-primary" (click)="saveSilabo()">

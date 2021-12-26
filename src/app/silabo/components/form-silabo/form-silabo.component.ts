@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CompentenciaEspecifica } from 'src/app/models/compentencia-especifica';
 import { Course } from 'src/app/models/course';
 import { Docente } from 'src/app/models/docente';
@@ -9,6 +10,7 @@ import { Silabo } from 'src/app/models/silabo';
 import { CompetenciaService } from 'src/app/services/competencia.service';
 import { DocenteService } from 'src/app/services/docente.service';
 import { SilaboService } from 'src/app/services/silabo.service';
+import { ReferenceComponent } from '../reference/reference.component';
 @Component({
   selector: 'app-form-silabo',
   templateUrl: './form-silabo.component.html',
@@ -41,7 +43,8 @@ export class FormSilaboComponent implements OnInit {
     private silaboService: SilaboService,
     private router: Router,
     private docenteService: DocenteService,
-    private competenciaService: CompetenciaService
+    private competenciaService: CompetenciaService,
+    private modalService: NgbModal
   ) {}
 
   ngOnInit(): void {
@@ -92,7 +95,6 @@ export class FormSilaboComponent implements OnInit {
   }
 
   saveSilabo(): void {
-    console.log(this.silaboForm.valid, this.silaboForm.value);
     if (this.silaboForm.valid) {
       console.log('valid');
       let newSilabo = new Silabo();
@@ -174,5 +176,21 @@ export class FormSilaboComponent implements OnInit {
 
   deleteCapacidad(id: number) {
     this.listcapacidades = this.listcapacidades.filter((comp) => comp.id != id);
+  }
+
+  newReference() {
+    const modalRef = this.modalService.open(ReferenceComponent, {
+      scrollable: true,
+      windowClass: 'myCustomModalClass',
+      size: 'lg',
+    });
+    let data = {};
+    modalRef.componentInstance.fromParent = data;
+    modalRef.result.then(
+      (result) => {
+        console.log(result);
+      },
+      (reason) => {}
+    );
   }
 }
