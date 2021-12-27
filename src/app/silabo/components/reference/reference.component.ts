@@ -29,7 +29,7 @@ export class ReferenceComponent implements OnInit {
         ],
       ],
       libro_fecha: [
-        '',
+        '1900',
         [
           Validators.required,
           Validators.min(1500),
@@ -37,7 +37,7 @@ export class ReferenceComponent implements OnInit {
         ],
       ],
       edicion: ['', [Validators.min(1)]],
-      editorial_nombre: ['', [Validators.required]],
+      editorial_nombre: ['csdvasdvadsv', [Validators.required]],
       paginas: ['', [Validators.min(0)]],
       autores: [''],
     });
@@ -48,6 +48,7 @@ export class ReferenceComponent implements OnInit {
   }
 
   saveReference() {
-    if (this.referenciaForm.valid) this.closeModal(this.referenciaForm.value);
+    if (this.referenciaForm.valid)
+      this.closeModal({ ...this.referenciaForm.value, id: 0 });
   }
 }
