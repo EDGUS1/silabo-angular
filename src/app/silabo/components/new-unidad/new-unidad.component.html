@@ -1,0 +1,50 @@
+<div class="modal-header">
+  <h5 class="modal-title">Nueva Unidad</h5>
+
+  <button
+    type="button"
+    class="btn btn-close mx-1"
+    data-dismiss="modal"
+    aria-label="Close"
+    (click)="closeModal('dismiss')"
+  ></button>
+</div>
+
+<div class="modal-body">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <label for="">Nombre de la unidad</label>
+        <input
+          type="text"
+          name=""
+          id=""
+          class="form-control"
+          [(ngModel)]="nombre"
+        />
+      </div>
+      <div class="col-12">
+        <label for="capacidad_id">Capacidades</label>
+        <select
+          name="capacidad"
+          id="capacidad_id"
+          class="form-select mt-2"
+          [(ngModel)]="capacidad"
+          (change)="addCapacidad()"
+        >
+          <option [ngValue]="" hidden>Seleccione</option>
+          <option *ngFor="let c of capacidades" [ngValue]="c">
+            {{ c?.nombre }}
+          </option>
+        </select>
+      </div>
+      <div class="col-12">{{ capacidadesSeleccionadas | json }}</div>
+    </div>
+  </div>
+</div>
+
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="addUnidad()">
+    Agregar
+  </button>
+</div>
