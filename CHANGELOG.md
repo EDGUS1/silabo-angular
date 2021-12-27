@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/EDGUS1/silabo-angular/compare/v0.2.0...v0.3.0) (2021-12-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* Reestructuración del proyecto por modulos
+
+### Features
+
+* Add agregar-semana component ([230d368](https://github.com/EDGUS1/silabo-angular/commit/230d3684ce0d4249e08a6f2eaae5101d45aa8f51))
+* add capacidades to form ([2d7585d](https://github.com/EDGUS1/silabo-angular/commit/2d7585d37d7686792786fd6456a98b448650495a))
+* add docentes list ([a2cd4d8](https://github.com/EDGUS1/silabo-angular/commit/a2cd4d80a2130808b06cae0ee7999c9f686ed8bd))
+* Add list-card component ([b121b3b](https://github.com/EDGUS1/silabo-angular/commit/b121b3b89e7b1a1dc3140b8a769ba775b0b2a401))
+* Add new elements ([861406f](https://github.com/EDGUS1/silabo-angular/commit/861406f90d3f4b5a82e0c2d67871b5cb8f1e885c))
+* Add new-unidad component ([b0fc7d8](https://github.com/EDGUS1/silabo-angular/commit/b0fc7d8b6b1eb0f75db4f15e193873a94dc11c18))
+* Add ver-semana component ([fba5d4a](https://github.com/EDGUS1/silabo-angular/commit/fba5d4a7f12bd68c5cfefd8b18f0d60d0a5b2799))
+* Change style ([c4602d4](https://github.com/EDGUS1/silabo-angular/commit/c4602d44af9b75e2d4db76c992fa6bfafdd3b6d8))
+* Create reference component ([cd09439](https://github.com/EDGUS1/silabo-angular/commit/cd094395cde9f4263f25185bd4704f5d915ee284))
+* update login service ([4efd7c8](https://github.com/EDGUS1/silabo-angular/commit/4efd7c8a9ec65f2180dd1984eb9a9115f59c18f1))
+
+
+* Reestructuración del proyecto por modulos ([c930e7f](https://github.com/EDGUS1/silabo-angular/commit/c930e7f02f8121d586109c54b2cb525589a90f73))
+
 ## [0.2.0](https://github.com/EDGUS1/silabo-angular/compare/v0.1.0...v0.2.0) (2021-10-04)
 
 
