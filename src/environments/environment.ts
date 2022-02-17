@@ -4,7 +4,10 @@
 
 export const environment = {
   production: false,
-  api: { baseUrl: 'https://api-silabo.herokuapp.com/api/v1' },
+  api: {
+    baseUrl: 'https://api-silabo.herokuapp.com/api/v1',
+    // baseUrl: 'http://localhost:3000/api/v1',
+  },
 };
 
 /*
