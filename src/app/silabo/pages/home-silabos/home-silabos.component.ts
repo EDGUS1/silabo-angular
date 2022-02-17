@@ -54,8 +54,27 @@ export class HomeSilabosComponent implements OnInit {
     this.router.navigate(['silabo/config'], this.navigationExtras);
   }
 
+  SortArrayNombre(x: Silabo, y: Silabo) {
+    if (x.asig_nombre < y.asig_nombre) return -1;
+    if (x.asig_nombre > y.asig_nombre) return 1;
+    return 0;
+  }
+
+  SortArrayFecha(x: Silabo, y: Silabo) {
+    if (x.updated_at < y.updated_at) return -1;
+    if (x.updated_at > y.updated_at) return 1;
+    return 0;
+  }
+
   changeFilterValue() {
-    if (this.filterSelect == 3)
-      this.silabos = this.silabos.filter((s) => s.favorito);
+    if (this.filterSelect == 1)
+      this.silabos = this.silabos.sort(this.SortArrayNombre);
+    else if (this.filterSelect == 2)
+      this.silabos = this.silabos.sort(this.SortArrayFecha);
+    else if (this.filterSelect == 3)
+      this.silabos = [
+        ...this.silabos.filter((s) => s.favorito),
+        ...this.silabos.filter((s) => !s.favorito),
+      ];
   }
 }
