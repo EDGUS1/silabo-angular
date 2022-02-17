@@ -14,6 +14,8 @@ import { AgregarSemanaComponent } from '../../components/agregar-semana/agregar-
 import { NewUnidadComponent } from '../../components/new-unidad/new-unidad.component';
 import { ReferenceComponent } from '../../components/reference/reference.component';
 import { VerSemanaComponent } from '../../components/ver-semana/ver-semana.component';
+import alertify from 'alertifyjs';
+
 @Component({
   selector: 'app-form-silabo',
   templateUrl: './form-silabo.component.html',
@@ -111,8 +113,18 @@ export class FormSilaboComponent implements OnInit {
       console.log(newSilabo);
 
       this.silaboService.saveSilabo(newSilabo).subscribe(
-        (response) => this.router.navigate(['silabo']),
-        (err) => console.log(err)
+        (response) => {
+          let alerta = alertify
+            .alert('<strong>Curso guardado con éxito</strong>')
+            .set('basic', true);
+
+          setTimeout(() => {
+            alerta.close();
+          }, 3000);
+
+          this.router.navigate(['silabo']);
+        },
+        (err) => alertify.error('Ocurrio un error al guardar el silabo', 3)
       );
     }
   }
