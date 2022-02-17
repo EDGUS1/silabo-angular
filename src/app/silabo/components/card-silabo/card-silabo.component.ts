@@ -36,11 +36,17 @@ export class CardSilaboComponent implements OnInit {
   ngOnInit(): void {}
 
   deleteSilabo(silaboId: number) {
-    this.silaboService.deleteSilabo(silaboId).subscribe((response) => {
-      alertify.set('notifier', 'position', 'top-right');
-      alertify.success('Silabo eliminado');
-      this.updateSilabos();
-    });
+    alertify.confirm(
+      'Seguro que desea eliminar el silabo?',
+      'Esta accion es irreversible, si desea eliminarlo presione ok de lo contrario cancele ',
+      () =>
+        this.silaboService.deleteSilabo(silaboId).subscribe((response) => {
+          alertify.set('notifier', 'position', 'top-right');
+          alertify.success('Silabo eliminado');
+          this.updateSilabos();
+        }),
+      function () {}
+    );
   }
 
   updateSilabos() {
