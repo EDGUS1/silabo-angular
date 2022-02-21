@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Capacidad } from 'src/app/models/capacidad';
 
 @Component({
   selector: 'app-new-unidad',
@@ -8,8 +9,8 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class NewUnidadComponent implements OnInit {
   @Input() fromParent;
-  capacidades: any[];
-  capacidadesSeleccionadas: any[] = [];
+  capacidades: Capacidad[];
+  capacidadesSeleccionadas: Capacidad[] = [];
   capacidad: any = '';
   nombre: string;
 

@@ -1,7 +1,7 @@
 <div class="card border-secondary mb-3">
   <div class="card-body">
     <span class="card-title d-flex justify-content-between align-items-center">
-      <span class="h5">{{ silabo?.asig_nombre | truncate: "5" }}</span>
+      <span class="h5">{{ silabo?.curso?.asig_nombre | truncate: "5" }}</span>
       <button
         class="btn"
         [ngClass]="{
@@ -15,11 +15,11 @@
     </span>
     <hr />
     <p>
-      <small>Ciclo: {{ silabo?.asig_ciclo }}</small> -
+      <small>Ciclo: {{ silabo?.curso?.asig_ciclo }}</small> -
       <small>Periodo: {{ silabo?.periodo_academico }}</small>
     </p>
     <p class="card-text">
-      {{ silabo?.asig_sumilla | truncate: "35" }}
+      {{ silabo?.curso?.asig_sumilla | truncate: "35" }}
     </p>
     <div class="d-flex justify-content-between align-items-center row">
       <div class="col-md-7">

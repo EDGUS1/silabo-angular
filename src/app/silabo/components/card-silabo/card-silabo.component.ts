@@ -37,8 +37,8 @@ export class CardSilaboComponent implements OnInit {
 
   deleteSilabo(silaboId: number) {
     alertify.confirm(
-      'Seguro que desea eliminar el silabo?',
-      'Esta accion es irreversible, si desea eliminarlo presione ok de lo contrario cancele ',
+      '¿Seguro que desea eliminar el silabo?',
+      'Esta acción es irreversible, si desea eliminarlo presione OK',
       () =>
         this.silaboService.deleteSilabo(silaboId).subscribe((response) => {
           alertify.set('notifier', 'position', 'top-right');

@@ -15,6 +15,7 @@ import { NewUnidadComponent } from '../../components/new-unidad/new-unidad.compo
 import { ReferenceComponent } from '../../components/reference/reference.component';
 import { VerSemanaComponent } from '../../components/ver-semana/ver-semana.component';
 import alertify from 'alertifyjs';
+import { Capacidad } from 'src/app/models/capacidad';
 
 @Component({
   selector: 'app-form-silabo',
@@ -40,7 +41,7 @@ export class FormSilaboComponent implements OnInit {
   initialCompetencia: CompentenciaEspecifica;
   competenciasSeleccionadas: CompentenciaEspecifica[] = [];
 
-  listcapacidades: any[] = [];
+  listcapacidades: Capacidad[] = [];
   capacidad: string = '';
 
   referencias: any[] = [];
@@ -56,8 +57,6 @@ export class FormSilaboComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(this.curso);
-
     this.initialDocente = new Docente();
     this.docente = this.initialDocente;
 
@@ -88,29 +87,36 @@ export class FormSilaboComponent implements OnInit {
   initFormEdit(silabo: Silabo): void {
     this.silaboForm = this.fb.group({
       codigo: [
-        { value: silabo.asig_codigo, disabled: true },
+        { value: silabo.curso.asig_codigo, disabled: true },
         [Validators.required],
       ],
-      nombre: [{ value: '', disabled: true }],
-      tipo: [{ value: '', disabled: true }],
-      horas: [{ value: '', disabled: true }],
-      semestre: ['', [Validators.required]],
-      ciclo: [{ value: '', disabled: true }],
-      creditos: [{ value: '', disabled: true }],
-      modalidad: ['', [Validators.required]],
-      sumilla: [{ value: '', disabled: true }],
+      nombre: [{ value: silabo.curso.asig_nombre, disabled: true }],
+      tipo: [{ value: silabo.curso.tipo_asignatura_id, disabled: true }],
+      horas: [{ value: silabo.curso.horas_sem_id, disabled: true }],
+      semestre: [silabo.periodo_academico, [Validators.required]],
+      ciclo: [{ value: silabo.curso.asig_ciclo, disabled: true }],
+      creditos: [{ value: silabo.curso.asig_creditos, disabled: true }],
+      modalidad: [silabo.asig_periodo_modalidad, [Validators.required]],
+      sumilla: [{ value: silabo.curso.asig_sumilla, disabled: true }],
     });
   }
 
   saveSilabo(): void {
     if (this.silaboForm.valid) {
-      console.log('valid');
       let newSilabo = new Silabo();
       newSilabo.periodo_academico = this.silaboForm.get('semestre').value;
       newSilabo.asig_periodo_modalidad = this.silaboForm.get('modalidad').value;
-      newSilabo.asig_id = this.silabo?.asig_id || this.curso?.asig_id;
+
+      let newCourse = new Course();
+      // newCourse.asig_id = this.silabo?.curso.asig_id || this.curso.asig_id;
+      newCourse.asig_id = this.curso.asig_id;
+
+      newSilabo.curso = newCourse;
       newSilabo.user_id = 1;
-      console.log(newSilabo);
+
+      newSilabo.docentes = this.docentesSeleccionados;
+      newSilabo.competencias = this.competenciasSeleccionadas;
+      newSilabo.capacidades = this.listcapacidades;
 
       this.silaboService.saveSilabo(newSilabo).subscribe(
         (response) => {
@@ -179,21 +185,24 @@ export class FormSilaboComponent implements OnInit {
   }
 
   addNewCapacidad() {
-    const id =
+    const capacidad_id =
       this.listcapacidades.length > 0
-        ? this.listcapacidades[this.listcapacidades.length - 1]?.id + 1
+        ? this.listcapacidades[this.listcapacidades.length - 1]?.capacidad_id +
+          1
         : 0;
     if (this.capacidad != '') {
       this.listcapacidades.push({
-        id,
-        nombre: this.capacidad,
+        capacidad_id,
+        capacidad_nombre: this.capacidad,
       });
       this.capacidad = '';
     }
   }
 
   deleteCapacidad(id: number) {
-    this.listcapacidades = this.listcapacidades.filter((comp) => comp.id != id);
+    this.listcapacidades = this.listcapacidades.filter(
+      (comp) => comp.capacidad_id != id
+    );
   }
 
   newReference() {

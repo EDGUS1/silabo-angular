@@ -49,7 +49,6 @@ export class NewCourseComponent implements OnInit {
 
   saveCourse() {
     if (this.courseForm.valid) {
-      console.log(this.courseForm.value);
       this.courseService
         .saveCourse(this.courseForm.value)
         .subscribe((response) => {

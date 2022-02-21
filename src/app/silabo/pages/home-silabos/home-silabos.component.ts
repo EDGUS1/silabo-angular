@@ -55,8 +55,8 @@ export class HomeSilabosComponent implements OnInit {
   }
 
   SortArrayNombre(x: Silabo, y: Silabo) {
-    if (x.asig_nombre < y.asig_nombre) return -1;
-    if (x.asig_nombre > y.asig_nombre) return 1;
+    if (x.curso.asig_nombre < y.curso.asig_nombre) return -1;
+    if (x.curso.asig_nombre > y.curso.asig_nombre) return 1;
     return 0;
   }
 

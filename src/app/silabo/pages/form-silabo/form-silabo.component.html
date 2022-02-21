@@ -85,8 +85,8 @@
       formControlName="modalidad"
     >
       <option value="" hidden>Seleccione</option>
-      <option value="1">Presencial</option>
-      <option value="2">Virutal</option>
+      <option value="Presencial">Presencial</option>
+      <option value="Virtual">Virtual</option>
     </select>
   </div>
   <div class="col-12 my-2">
@@ -140,6 +140,9 @@
             </tbody>
           </table>
         </div>
+        <small class="text-muted">
+          Se agregara como responsable del curso al primer docente agregado
+        </small>
       </div>
     </div>
   </div>
@@ -215,11 +218,11 @@
           <table class="table table-borderless">
             <tbody>
               <tr *ngFor="let com of listcapacidades; let i = index">
-                <td>{{ com.nombre }}</td>
+                <td>{{ com.capacidad_nombre }}</td>
                 <td>
                   <button
                     class="btn btn-danger mx-1"
-                    (click)="deleteCapacidad(com.id)"
+                    (click)="deleteCapacidad(com.capacidad_id)"
                   >
                     X
                   </button>
