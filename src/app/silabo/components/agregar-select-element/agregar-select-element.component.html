@@ -1,0 +1,45 @@
+<div class="row">
+  <div class="col-12">
+    <label for="element_id">{{ etiqueta }}</label>
+    <select
+      name=""
+      id="element_id"
+      class="form-select mt-2"
+      [(ngModel)]="element"
+      (change)="addNewElement()"
+    >
+      <option [ngValue]="initialElement" hidden>Seleccione</option>
+      <option *ngFor="let e of listElements" [ngValue]="e">
+        {{ e[valor] }}
+      </option>
+    </select>
+  </div>
+  <div class="col-12 mt-2">
+    <div class="card table-responsive p-3 pb-0">
+      <span *ngIf="elementosSeleccionados?.length === 0">
+        No hay elementos agregados
+      </span>
+      <table class="table table-borderless">
+        <tbody>
+          <tr *ngFor="let d of elementosSeleccionados">
+            <td class="align-middle">
+              {{ d[cadenaMostrar] }}
+            </td>
+            <td class="align-middle">{{ d[valor] }}</td>
+            <td class="align-middle">
+              <button
+                class="btn btn-danger mx-1"
+                (click)="deleteElement(d[valorId])"
+              >
+                X
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <small class="text-muted" *ngIf="valorId == 'docente_id'">
+      Se agregara como responsable del curso al primer elementO agregado
+    </small>
+  </div>
+</div>
