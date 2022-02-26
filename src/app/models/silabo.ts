@@ -2,6 +2,7 @@ import { Capacidad } from './capacidad';
 import { CompentenciaEspecifica } from './compentencia-especifica';
 import { Course } from './course';
 import { Docente } from './docente';
+import { Referencia } from './referencia';
 
 export class Silabo {
   curso: Course;
@@ -14,4 +15,5 @@ export class Silabo {
   docentes: Docente[];
   competencias: CompentenciaEspecifica[];
   capacidades: Capacidad[];
+  referencias: Referencia[];
 }
