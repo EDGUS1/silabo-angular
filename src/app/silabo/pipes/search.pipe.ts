@@ -12,7 +12,7 @@ export class SearchPipe implements PipeTransform {
   ): unknown {
     if (!text) return lista;
     return lista.filter((item) =>
-      item[keyword].toUpperCase().includes(text.toUpperCase())
+      item['curso'][keyword].toUpperCase().includes(text.toUpperCase())
     );
   }
 }
