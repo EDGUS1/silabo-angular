@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.3.1](https://github.com/EDGUS1/silabo-angular/compare/v0.3.0...v0.3.1) (2022-02-27)
+
+
+### Features
+
+* Add alert when save silabo ([cbdbebd](https://github.com/EDGUS1/silabo-angular/commit/cbdbebddffc8202968308e7a302fae64992ecce8))
+* Alert for delete silabo ([9804161](https://github.com/EDGUS1/silabo-angular/commit/980416128cf8670312a2583d570d09786563a474))
+* Change html layout ([5b901ed](https://github.com/EDGUS1/silabo-angular/commit/5b901edf7d1849ce2321cb6c72b80e05c5b71d37))
+* Change structure of component ([6f474ea](https://github.com/EDGUS1/silabo-angular/commit/6f474eaa7e7bdc8ae84d2d5e90d17de6122bee45))
+* Create agregar-element component ([bd2362f](https://github.com/EDGUS1/silabo-angular/commit/bd2362f414b21245ee082cb7c4380c67eca9b466))
+* Create agregar-select-element component ([4022089](https://github.com/EDGUS1/silabo-angular/commit/4022089049b1c2b614b22fcaa487878d317bd7ea))
+* Create autor model ([de99b22](https://github.com/EDGUS1/silabo-angular/commit/de99b222e8d979529024e049dccf12944a0a2268))
+* Create reference model ([3eeaf10](https://github.com/EDGUS1/silabo-angular/commit/3eeaf1098aee755f1a0b1772a30075e2f8de7c8d))
+* Create semana model ([f3baac4](https://github.com/EDGUS1/silabo-angular/commit/f3baac470c6549ad9f927f29c5b50381fb50a6be))
+* Create unidad model ([d1952ff](https://github.com/EDGUS1/silabo-angular/commit/d1952ffc49671c4ecd8a44a077c3c636f7917fd7))
+* Implement funcionality for Semana ([bf6ad9f](https://github.com/EDGUS1/silabo-angular/commit/bf6ad9f0ab073c731d6934cad7eda90e839d2e68))
+* Se agregaron nuevas funcionalidades ([d55d0d5](https://github.com/EDGUS1/silabo-angular/commit/d55d0d5f6586bae7fbf1096f705a3a7fc84cbbae))
+* Sort elements by name, date and favorite ([e640f06](https://github.com/EDGUS1/silabo-angular/commit/e640f061ab2f666d8bdf52fcba5f68f48d191aeb))
+* Updete silabo definition ([c4c46c6](https://github.com/EDGUS1/silabo-angular/commit/c4c46c601a8eb919ca5613cfacffcae200a543c3))
+
 ## [0.3.0](https://github.com/EDGUS1/silabo-angular/compare/v0.2.0...v0.3.0) (2021-12-27)
 
 
