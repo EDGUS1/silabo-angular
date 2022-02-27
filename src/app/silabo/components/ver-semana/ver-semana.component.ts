@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -7,9 +7,15 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./ver-semana.component.css'],
 })
 export class VerSemanaComponent implements OnInit {
+  @Input() fromParent;
+  unidades: any;
+
   constructor(public activeModal: NgbActiveModal) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    console.log(this.fromParent);
+    this.unidades = this.fromParent.unidades;
+  }
 
   closeModal(sendData) {
     this.activeModal.close(sendData);

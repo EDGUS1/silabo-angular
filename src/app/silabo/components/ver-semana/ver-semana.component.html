@@ -1,5 +1,5 @@
 <div class="modal-header">
-  <h5 class="modal-title">Semanas agregadas</h5>
+  <h5 class="modal-title">{{ unidades.unidad_nombre }}</h5>
 
   <button
     type="button"
@@ -13,236 +13,69 @@
 <div class="modal-body">
   <div class="container-fluid">
     <div class="accordion" id="accordionExample">
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingOne">
-          <button
-            class="accordion-button"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseOne"
-            aria-expanded="true"
-            aria-controls="collapseOne"
-          >
-            Accordion Item #1
-          </button>
-        </h2>
-        <div
-          id="collapseOne"
-          class="accordion-collapse collapse show"
-          aria-labelledby="headingOne"
-          data-bs-parent="#accordionExample"
-        >
-          <div class="accordion-body">
-            <p>Contenidos</p>
-            <ul>
-              <li>
-                Teoria: Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Veniam, vitae voluptatem. Doloribus placeat tempora a ex
-                in atque harum. Facere ducimus dignissimos asperiores iusto vel
-                eius reprehenderit nesciunt cum ipsa!
-              </li>
-              <li>
-                Laboratorio: Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Saepe natus ipsum et deserunt exercitationem animi
-                provident aspernatur, doloremque blanditiis. Voluptas
-                reprehenderit, officia eveniet ducimus sed omnis voluptatibus.
-                Aut, nulla dignissimos!
-              </li>
-            </ul>
-            <p>Actividades</p>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <p>Recursos</p>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <p>Estrategias</p>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingTwo">
+      <div
+        class="accordion-item"
+        *ngFor="let u of unidades.semanas; let i = index"
+      >
+        <h2 class="accordion-header" id="{{ 'heading' + i }}">
           <button
             class="accordion-button collapsed"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#collapseTwo"
+            [attr.data-bs-target]="'#collapse' + i"
             aria-expanded="false"
-            aria-controls="collapseTwo"
+            [attr.aria-controls]="'collapse' + i"
           >
-            Accordion Item #2
+            {{ "Semana " + (i + 1) }}
           </button>
         </h2>
         <div
-          id="collapseTwo"
+          id="{{ 'collapse' + i }}"
           class="accordion-collapse collapse"
-          aria-labelledby="headingTwo"
+          aria-labelledby="{{ 'heading' + i }}"
           data-bs-parent="#accordionExample"
         >
           <div class="accordion-body">
             <p>Contenidos</p>
             <ul>
-              <li>
-                Teoria: Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Veniam, vitae voluptatem. Doloribus placeat tempora a ex
-                in atque harum. Facere ducimus dignissimos asperiores iusto vel
-                eius reprehenderit nesciunt cum ipsa!
+              <li>Teoria: {{ u.teoria }}</li>
+              <li>Laboratorio: {{ u.laboratorio }}</li>
+            </ul>
+            <p>Actividades asincronas</p>
+            <ul>
+              <li *ngFor="let e of u.actividades_async">
+                {{ e.elemento_nombre }}
               </li>
-              <li>
-                Laboratorio: Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Saepe natus ipsum et deserunt exercitationem animi
-                provident aspernatur, doloremque blanditiis. Voluptas
-                reprehenderit, officia eveniet ducimus sed omnis voluptatibus.
-                Aut, nulla dignissimos!
-              </li>
-            </ul>
-            <p>Actividades</p>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
             </ul>
             <p>Recursos</p>
             <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
+              <li *ngFor="let e of u.recursos_async">
+                {{ e.elemento_nombre }}
+              </li>
             </ul>
             <p>Estrategias</p>
             <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="accordion-item">
-        <h2 class="accordion-header" id="headingThree">
-          <button
-            class="accordion-button collapsed"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#collapseThree"
-            aria-expanded="false"
-            aria-controls="collapseThree"
-          >
-            Accordion Item #3
-          </button>
-        </h2>
-        <div
-          id="collapseThree"
-          class="accordion-collapse collapse"
-          aria-labelledby="headingThree"
-          data-bs-parent="#accordionExample"
-        >
-          <div class="accordion-body">
-            <p>Contenidos</p>
-            <ul>
-              <li>
-                Teoria: Lorem ipsum dolor, sit amet consectetur adipisicing
-                elit. Veniam, vitae voluptatem. Doloribus placeat tempora a ex
-                in atque harum. Facere ducimus dignissimos asperiores iusto vel
-                eius reprehenderit nesciunt cum ipsa!
-              </li>
-              <li>
-                Laboratorio: Lorem ipsum dolor sit amet consectetur adipisicing
-                elit. Saepe natus ipsum et deserunt exercitationem animi
-                provident aspernatur, doloremque blanditiis. Voluptas
-                reprehenderit, officia eveniet ducimus sed omnis voluptatibus.
-                Aut, nulla dignissimos!
+              <li *ngFor="let e of u.estrategias_async">
+                {{ e.elemento_nombre }}
               </li>
             </ul>
-            <p>Actividades</p>
+            <p>Actividades sincronas</p>
             <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
+              <li *ngFor="let e of u.actividades">
+                {{ e.elemento_nombre }}
+              </li>
             </ul>
             <p>Recursos</p>
             <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
+              <li *ngFor="let e of u.recursos">
+                {{ e.elemento_nombre }}
+              </li>
             </ul>
             <p>Estrategias</p>
             <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
-            </ul>
-            <ul>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Deleniti,
-              nesciunt.
+              <li *ngFor="let e of u.estrategias">
+                {{ e.elemento_nombre }}
+              </li>
             </ul>
           </div>
         </div>
@@ -250,7 +83,3 @@
     </div>
   </div>
 </div>
-
-<!-- <div class="modal-footer">
-  <button type="button" class="btn btn-primary">Agregar</button>
-</div> -->
