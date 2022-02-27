@@ -19,6 +19,8 @@ import { ListCardComponent } from './components/list-card/list-card.component';
 import { NewUnidadComponent } from './components/new-unidad/new-unidad.component';
 import { VerSemanaComponent } from './components/ver-semana/ver-semana.component';
 import { AgregarSemanaComponent } from './components/agregar-semana/agregar-semana.component';
+import { AgregarElementoCardComponent } from './components/agregar-elemento-card/agregar-elemento-card.component';
+import { AgregarSelectElementComponent } from './components/agregar-select-element/agregar-select-element.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { AgregarSemanaComponent } from './components/agregar-semana/agregar-sema
     NewUnidadComponent,
     VerSemanaComponent,
     AgregarSemanaComponent,
+    AgregarElementoCardComponent,
+    AgregarSelectElementComponent,
   ],
   imports: [
     CommonModule,
