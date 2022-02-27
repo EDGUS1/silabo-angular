@@ -17,7 +17,7 @@ export class HomeSilabosComponent implements OnInit {
 
   silabos: Silabo[];
   page = 1;
-  pageSize = 10;
+  pageSize = 9;
   filterSelect = 0;
   filterSearch: string;
 
