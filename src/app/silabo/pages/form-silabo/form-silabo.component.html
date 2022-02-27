@@ -98,164 +98,56 @@
       formControlName="sumilla"
     ></textarea>
   </div>
-  <div class="col-12 col-lg-6 my-2">
-    <div class="row">
-      <div class="col-12">
-        <label for="docente_id">Docentes</label>
-        <select
-          name=""
-          id="docente_id"
-          class="form-select mt-2"
-          [(ngModel)]="docente"
-          [ngModelOptions]="{ standalone: true }"
-          (change)="addNewDocente()"
-        >
-          <option [ngValue]="initialDocente" hidden>Seleccione</option>
-          <option *ngFor="let d of listdocentes" [ngValue]="d">
-            {{ d?.docente_correo }}
-          </option>
-        </select>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="card table-responsive p-3 pb-0">
-          <span *ngIf="docentesSeleccionados?.length === 0"
-            >No hay docentes agregados</span
-          >
-          <table class="table table-borderless">
-            <tbody>
-              <tr *ngFor="let d of docentesSeleccionados">
-                <td>
-                  {{ d?.docente_nombre + " " + d?.docente_apellido_paterno }}
-                </td>
-                <td>{{ d?.docente_correo }}</td>
-                <td>
-                  <button
-                    class="btn btn-danger mx-1"
-                    (click)="deleteDocente(d?.docente_id)"
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <small class="text-muted">
-          Se agregara como responsable del curso al primer docente agregado
-        </small>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 col-lg-6 my-2">
-    <div class="row">
-      <div class="col-12">
-        <label for="competencia_especifica">Competencias Especificas</label>
-        <select
-          name=""
-          id="competencia_especifica_id"
-          class="form-select mt-2"
-          [(ngModel)]="compentenciaEspecifica"
-          [ngModelOptions]="{ standalone: true }"
-          (change)="addNewCompetencia()"
-        >
-          <option [ngValue]="initialCompetencia" hidden>Seleccione</option>
-          <option *ngFor="let c of listCompetencias" [ngValue]="c">
-            {{ c?.comp_esp_nombre }}
-          </option>
-        </select>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="card table-responsive p-3 pb-0">
-          <span *ngIf="competenciasSeleccionadas?.length === 0"
-            >No hay competencias agregadas</span
-          >
-          <table class="table table-borderless">
-            <tbody>
-              <tr *ngFor="let c of competenciasSeleccionadas">
-                <td>{{ c?.comp_esp_codigo }}</td>
-                <td>{{ c?.comp_esp_nombre }}</td>
-                <td>
-                  <button
-                    class="btn btn-danger mx-1"
-                    (click)="deleteCompetencia(c?.comp_esp_id)"
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 my-2">
-    <div class="row">
-      <div class="col-12">
-        <label for="capacidad_id">Capacidades</label>
-      </div>
-      <div class="col-sm-10 mt-2">
-        <input
-          id="capacidad_id"
-          type="text"
-          class="form-control"
-          placeholder="Ingresa la capacidad"
-          name="capacidad"
-          [(ngModel)]="capacidad"
-          [ngModelOptions]="{ standalone: true }"
-        />
-      </div>
-      <div class="col-sm-2 mt-2">
-        <button class="btn btn-success" (click)="addNewCapacidad()">
-          Agregar
-        </button>
-      </div>
-      <div class="col-12 mt-2">
-        <div class="card table-responsive p-3">
-          <span *ngIf="listcapacidades.length == 0">
-            No hay capacidades agregadas
-          </span>
-          <table class="table table-borderless">
-            <tbody>
-              <tr *ngFor="let com of listcapacidades; let i = index">
-                <td>{{ com.capacidad_nombre }}</td>
-                <td>
-                  <button
-                    class="btn btn-danger mx-1"
-                    (click)="deleteCapacidad(com.capacidad_id)"
-                  >
-                    X
-                  </button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-12 my-2">
+  <app-agregar-select-element
+    class="col-12 col-lg-6 my-2"
+    [etiqueta]="'Docentes'"
+    [valor]="'docente_correo'"
+    [valorId]="'docente_id'"
+    [listElements]="listdocentes"
+    [cadenaMostrar]="'docente_nombre'"
+  ></app-agregar-select-element>
+  <app-agregar-select-element
+    class="col-12 col-lg-6 my-2"
+    [etiqueta]="'Competencias Especificas'"
+    [valor]="'comp_esp_nombre'"
+    [valorId]="'comp_esp_id'"
+    [listElements]="listCompetencias"
+    [cadenaMostrar]="'comp_esp_codigo'"
+  ></app-agregar-select-element>
+  <app-agregar-elemento-card
+    etiqueta="Capacidades"
+    placeholder="Ingresa la capacidad"
+  ></app-agregar-elemento-card>
+  <div class="col-12 my-2 d-flex justify-content-between">
     <span class="col-5">Programación</span>
-    <button class="btn btn-outline-info" (click)="newUnidad()">
+    <button
+      class="btn btn-success"
+      (click)="newUnidad()"
+      [ngClass]="{ disabled: !(childCapacidad?.elementos?.length > 0) }"
+    >
       Agregar Unidad
     </button>
   </div>
   <div class="col-12 mt-2">
-    <div class="card table-responsive p-3">
+    <div class="card table-responsive p-3 pb-0">
       <span *ngIf="unidades.length == 0"> No hay unidades agregadas </span>
       <table class="table table-borderless">
         <tbody>
           <tr *ngFor="let u of unidades; let i = index">
-            <td>{{ u.nombre }}</td>
+            <td>{{ u.unidad_nombre }}</td>
+            <td>{{ u.semanas.length }} semanas agregadas</td>
             <td>
-              <button class="btn btn-primary mx-1" (click)="verSemanas()">
+              <button
+                class="btn btn-primary mx-1"
+                (click)="verSemanas(u.unidad_id)"
+              >
                 Ver
               </button>
             </td>
             <td>
               <button
                 class="btn btn-success mx-1"
-                (click)="agregarContenidoUnidad()"
+                (click)="agregarContenidoUnidad(u.unidad_id)"
               >
                 Agregar Semana
               </button>
@@ -264,10 +156,11 @@
         </tbody>
       </table>
     </div>
+    <small class="text-muted">Debe de ingresar al menos una capacidad</small>
   </div>
-  <div class="col-12 my-2">
+  <div class="col-12 my-2 d-flex justify-content-between">
     <span class="col-5">Referencias Bibliograficas</span>
-    <button class="btn btn-outline-info" (click)="newReference()">
+    <button class="btn btn-success" (click)="newReference()">
       Agregar referencia
     </button>
   </div>
@@ -296,8 +189,8 @@
       </table>
     </div>
   </div>
-  <div class="col-12 my-3 d-flex flex-row-reverse">
-    <button class="btn btn-outline-primary" (click)="saveSilabo()">
+  <div class="col-12 my-5 d-grid gap-2 d-md-flex flex-row-reverse">
+    <button class="btn btn-outline-primary px-5" (click)="saveSilabo()">
       Guardar
     </button>
   </div>

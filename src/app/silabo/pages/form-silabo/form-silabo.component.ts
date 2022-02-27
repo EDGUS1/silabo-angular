@@ -1,4 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {
+  Component,
+  Input,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
@@ -16,6 +23,10 @@ import { ReferenceComponent } from '../../components/reference/reference.compone
 import { VerSemanaComponent } from '../../components/ver-semana/ver-semana.component';
 import alertify from 'alertifyjs';
 import { Capacidad } from 'src/app/models/capacidad';
+import { AgregarElementoCardComponent } from '../../components/agregar-elemento-card/agregar-elemento-card.component';
+import { AgregarSelectElementComponent } from '../../components/agregar-select-element/agregar-select-element.component';
+import { Referencia } from 'src/app/models/referencia';
+import { Unidad } from 'src/app/models/unidad';
 
 @Component({
   selector: 'app-form-silabo',
@@ -27,25 +38,16 @@ export class FormSilaboComponent implements OnInit {
   @Input() isEdit: boolean;
   @Input() curso: Course;
 
+  @ViewChild(AgregarElementoCardComponent) childCapacidad;
+  @ViewChildren(AgregarSelectElementComponent)
+  childrenSelect: QueryList<AgregarSelectElementComponent>;
+
   silaboForm: FormGroup = new FormGroup({});
-
   faTrashAlt = faTrashAlt;
-
   listdocentes: Docente[];
-  initialDocente: Docente;
-  docente: Docente;
-  docentesSeleccionados: Docente[] = [];
-
   listCompetencias: CompentenciaEspecifica[];
-  compentenciaEspecifica: CompentenciaEspecifica;
-  initialCompetencia: CompentenciaEspecifica;
-  competenciasSeleccionadas: CompentenciaEspecifica[] = [];
-
-  listcapacidades: Capacidad[] = [];
-  capacidad: string = '';
-
-  referencias: any[] = [];
-  unidades: any[] = [];
+  referencias: Referencia[] = [];
+  unidades: Unidad[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -57,16 +59,8 @@ export class FormSilaboComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.initialDocente = new Docente();
-    this.docente = this.initialDocente;
-
-    this.initialCompetencia = new CompentenciaEspecifica();
-    this.compentenciaEspecifica = this.initialCompetencia;
-
     this.listDocentes();
-
     this.isEdit ? this.initFormEdit(this.silabo) : this.initForm(this.curso);
-
     this.listCompentenciasEspecificas(this.curso.asig_id);
   }
 
@@ -108,15 +102,23 @@ export class FormSilaboComponent implements OnInit {
       newSilabo.asig_periodo_modalidad = this.silaboForm.get('modalidad').value;
 
       let newCourse = new Course();
-      // newCourse.asig_id = this.silabo?.curso.asig_id || this.curso.asig_id;
       newCourse.asig_id = this.curso.asig_id;
 
       newSilabo.curso = newCourse;
+      //TODO: CAMBIAR USERID
       newSilabo.user_id = 1;
 
-      newSilabo.docentes = this.docentesSeleccionados;
-      newSilabo.competencias = this.competenciasSeleccionadas;
-      newSilabo.capacidades = this.listcapacidades;
+      newSilabo.docentes =
+        this.childrenSelect.toArray()[0].elementosSeleccionados;
+      newSilabo.competencias =
+        this.childrenSelect.toArray()[1].elementosSeleccionados;
+
+      newSilabo.capacidades = this.childCapacidad.elementos.map((c) => ({
+        capacidad_id: c.elemento_id,
+        capacidad_nombre: c.elemento_nombre,
+      }));
+
+      newSilabo.referencias = this.referencias;
 
       this.silaboService.saveSilabo(newSilabo).subscribe(
         (response) => {
@@ -141,23 +143,6 @@ export class FormSilaboComponent implements OnInit {
       .subscribe((response: Docente[]) => (this.listdocentes = response));
   }
 
-  addNewDocente() {
-    if (
-      !this.docentesSeleccionados.find(
-        (e) => e.docente_id == this.docente.docente_id
-      )
-    ) {
-      this.docentesSeleccionados.push(this.docente);
-      this.docente = this.initialDocente;
-    }
-  }
-
-  deleteDocente(id: number) {
-    this.docentesSeleccionados = this.docentesSeleccionados.filter(
-      (e) => e.docente_id !== id
-    );
-  }
-
   listCompentenciasEspecificas(id: number) {
     this.competenciaService
       .listCompetenciasEspecificas(id)
@@ -165,44 +150,6 @@ export class FormSilaboComponent implements OnInit {
         (response: CompentenciaEspecifica[]) =>
           (this.listCompetencias = response)
       );
-  }
-
-  addNewCompetencia() {
-    if (
-      !this.competenciasSeleccionadas.find(
-        (e) => e.comp_esp_id == this.compentenciaEspecifica.comp_esp_id
-      )
-    ) {
-      this.competenciasSeleccionadas.push(this.compentenciaEspecifica);
-      this.compentenciaEspecifica = this.initialCompetencia;
-    }
-  }
-
-  deleteCompetencia(id) {
-    this.competenciasSeleccionadas = this.competenciasSeleccionadas.filter(
-      (e) => e.comp_esp_id !== id
-    );
-  }
-
-  addNewCapacidad() {
-    const capacidad_id =
-      this.listcapacidades.length > 0
-        ? this.listcapacidades[this.listcapacidades.length - 1]?.capacidad_id +
-          1
-        : 0;
-    if (this.capacidad != '') {
-      this.listcapacidades.push({
-        capacidad_id,
-        capacidad_nombre: this.capacidad,
-      });
-      this.capacidad = '';
-    }
-  }
-
-  deleteCapacidad(id: number) {
-    this.listcapacidades = this.listcapacidades.filter(
-      (comp) => comp.capacidad_id != id
-    );
   }
 
   newReference() {
@@ -215,12 +162,13 @@ export class FormSilaboComponent implements OnInit {
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
       (result) => {
-        // crear interfaz para referencia
+        //TODO: crear interfaz para referencia
         let res = this.referencias.reduce(function (p, v) {
-          return p.id > v.id ? p.id : v.id;
+          return p['id'] > v['id'] ? p['id'] : v['id'];
         }, 0);
 
         this.referencias.push({ ...result, id: res + 1 });
+        console.log(this.referencias);
       },
       (reason) => {
         console.log(reason);
@@ -238,13 +186,23 @@ export class FormSilaboComponent implements OnInit {
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = { capacidades: this.listcapacidades };
+    let data = {
+      capacidades: this.childCapacidad.elementos.map((c) => ({
+        capacidad_id: c.elemento_id,
+        capacidad_nombre: c.elemento_nombre,
+      })),
+    };
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
       (result) => {
         console.log(result);
-        this.unidades.push(result);
+        let res = this.unidades.reduce(function (p, v) {
+          return p['unidad_id'] > v['unidad_id']
+            ? p['unidad_id']
+            : v['unidad_id'];
+        }, 0);
+        this.unidades.push({ unidad_id: res + 1, ...result, semanas: [] });
       },
       (reason) => {
         console.log(reason);
@@ -252,13 +210,15 @@ export class FormSilaboComponent implements OnInit {
     );
   }
 
-  verSemanas() {
+  verSemanas(id: number) {
     const modalRef = this.modalService.open(VerSemanaComponent, {
       scrollable: true,
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = { capacidades: this.listcapacidades };
+    let data = {
+      unidades: this.unidades.find((e) => e['unidad_id'] == id),
+    };
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
@@ -271,18 +231,33 @@ export class FormSilaboComponent implements OnInit {
     );
   }
 
-  agregarContenidoUnidad() {
+  agregarContenidoUnidad(id: number) {
     const modalRef = this.modalService.open(AgregarSemanaComponent, {
       scrollable: true,
       windowClass: 'myCustomModalClass',
       size: 'lg',
     });
-    let data = { capacidades: this.listcapacidades };
+    let data = { unidad_id: id };
 
     modalRef.componentInstance.fromParent = data;
     modalRef.result.then(
       (result) => {
-        console.log(result);
+        // console.log(result);
+        // TODO:
+        if (result != 'dismiss') {
+          // this.semanas = result;
+          // console.log(this.unidades);
+          let res = this.unidades.findIndex(
+            (e) => e['unidad_id'] == result['unidad_id']
+          );
+          // console.log(res);
+
+          this.unidades[res]['semanas'] = [
+            ...this.unidades[res]['semanas'],
+            result,
+          ];
+          console.log(this.unidades);
+        }
       },
       (reason) => {
         console.log(reason);
