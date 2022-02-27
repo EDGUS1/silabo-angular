@@ -25,11 +25,11 @@ export class ReferenceComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(1),
-          Validators.maxLength(50),
+          Validators.maxLength(200),
         ],
       ],
       libro_fecha: [
-        '1900',
+        '',
         [
           Validators.required,
           Validators.min(1500),
@@ -37,7 +37,7 @@ export class ReferenceComponent implements OnInit {
         ],
       ],
       edicion: ['', [Validators.min(1)]],
-      editorial_nombre: ['csdvasdvadsv', [Validators.required]],
+      editorial_nombre: ['', [Validators.required]],
       paginas: ['', [Validators.min(0)]],
       autores: [''],
     });
@@ -48,7 +48,13 @@ export class ReferenceComponent implements OnInit {
   }
 
   saveReference() {
+    let salida = this.referenciaForm.get('autores').value;
+    salida = salida.split(';').map((e) => ({
+      nombre: e.trim().split(' ')[0],
+      apellido: e.trim().split(' ')[1],
+    }));
+
     if (this.referenciaForm.valid)
-      this.closeModal({ ...this.referenciaForm.value, id: 0 });
+      this.closeModal({ ...this.referenciaForm.value, id: 0, autores: salida });
   }
 }
