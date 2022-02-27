@@ -32,7 +32,7 @@
           [(ngModel)]="capacidad"
           (change)="addCapacidad()"
         >
-          <option [ngValue]="" hidden>Seleccione</option>
+          <option [ngValue]="0" hidden>Seleccione</option>
           <option *ngFor="let c of capacidades" [ngValue]="c">
             {{ c?.capacidad_nombre }}
           </option>

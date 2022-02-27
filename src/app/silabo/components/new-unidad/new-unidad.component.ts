@@ -11,13 +11,14 @@ export class NewUnidadComponent implements OnInit {
   @Input() fromParent;
   capacidades: Capacidad[];
   capacidadesSeleccionadas: Capacidad[] = [];
-  capacidad: any = '';
+  capacidad: any = 0;
   nombre: string;
 
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit(): void {
     console.log(this.fromParent.capacidades);
+
     this.capacidades = this.fromParent.capacidades;
   }
 
@@ -32,9 +33,11 @@ export class NewUnidadComponent implements OnInit {
     ];
   }
   addUnidad() {
-    this.closeModal({
-      capacidades: this.capacidadesSeleccionadas,
-      nombre: this.nombre,
-    });
+    if (this.nombre != '') {
+      this.closeModal({
+        capacidades: this.capacidadesSeleccionadas,
+        unidad_nombre: this.nombre,
+      });
+    }
   }
 }
