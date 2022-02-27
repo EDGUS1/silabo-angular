@@ -23,8 +23,8 @@
       <table class="table table-borderless">
         <tbody>
           <tr *ngFor="let e of elementos; let i = index">
-            <td>{{ e.elemento_nombre }}</td>
-            <td>
+            <td class="align-middle">{{ e.elemento_nombre }}</td>
+            <td class="align-middle">
               <button
                 class="btn btn-danger mx-1"
                 (click)="eliminarElemento(e.elemento_id)"
